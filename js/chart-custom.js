@@ -13,7 +13,7 @@
 
 
 	var data  = {
-		labels: [ 'Year 2018', 'Year 2019', 'Year 2020', 'Year 2021', 'Year 2022', 'Year 2023' ],
+		labels: [ 'June 2022', 'July', 'August', 'September', 'October', 'Year 2023' ],
 		datasets: [{
 				backgroundColor: gradient,
 				pointBackgroundColor: '#7b5eea',
