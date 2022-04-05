@@ -248,6 +248,10 @@ mark{
 	padding-top: 110px;
 	padding-bottom: 110px;
 }
+.padding-top-bottom-bigs {
+	padding-top: 0px;
+	padding-bottom: 110px;
+}
 .padding-top-big {
 	padding-top: 110px;
 }
@@ -2085,7 +2089,7 @@ display: inline-block;
 	}
 	.hero-center-wrap .btn{
 		font-size: 12px;
-		padding: 8px 10px;
+		
 		margin: 0 2px;
 		letter-spacing: 0;
 		margin-bottom: 5px;
