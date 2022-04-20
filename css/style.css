@@ -177,7 +177,9 @@ mark{
 
 /* #Primary style
 ================================================== */
-
+.fa-gift{
+	color: purple;
+}
 .section {
     position: relative;
 	width: 100%;
@@ -1073,7 +1075,11 @@ mark{
 	border-radius: 10px;
 }
 .table-sale p{
-	color: #999;
+	color: rgb(0, 0, 0);
+	margin-bottom: 0;
+}
+.table-oxi p{
+	color: rgb(0, 0, 0);
 	margin-bottom: 0;
 }
 .table-sale.background-color p{
@@ -1100,7 +1106,7 @@ mark{
 	border-color: #fff;
 }
 .table-sale h4{
-	color: #999;
+	color: rgb(0, 0, 0);
 	text-transform: uppercase;
 	font-weight: 600;
 	font-size: 25px;
