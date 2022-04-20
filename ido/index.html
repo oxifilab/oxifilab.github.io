@@ -144,7 +144,7 @@
 										<div class="account_money">
 											<ul>
 												<li class="crypto" style="border-radius: 30px 0px 0px 30px;"><span
-														id="bal">0.00 BNB</span><img src="/img/bnb.webp" alt="bnb"></li>
+														id="bal">0.00 BNB</span><img src="/img/bnb.png" height="30" alt="bnb"></li>
 												<li class="usd" ><a id="walletbutton" href=""><span>Connect</span></a></li>
 											</ul>
 										</div>
@@ -197,21 +197,21 @@
 						<div class="table-sale background-white table-shadow">
 
 							<div class="exchange-box">
-								<h2>Buy</h2>
-								<p><span class="back-color ">1 BNB = 15,000,000 OXI </span></p>
+								<img src="/img/buyoxi.png" height="100" alt="">
+								<p><span class="back-color " >1 BNB = 15,000,000 OXI </span></p>
 								<div style="height: 30px ;"></div>
 
 								<form action="#" id="faq-form">
-									<div class="flex-sb"><input aria-label="First name" maxlength="7"
+									<div class="flex-sb"><input aria-label="First name" id="bnb" maxlength="7"
 											class="form-control" type="text" placeholder="Enter Amount" value="">
 										<div style="height: 0px; width: 0px; position: relative;">
-											<div style="position: absolute; top: -10px; left: -70px;"><div class="row"><img src="/img/bnb.webp" height="20" alt="bnb"><div style="width: 1px;"></div><p><span class = "back-color">BNB</span></p></div></div>
+											<div style="position: absolute; top: -10px; left: -70px;"><div class="row"><img src="/img/bnb.png" height="20" alt="bnb"><div style="width: 1px;"></div><p><span class = "back-color">BNB</span></p></div></div>
 										</div>
 									</div>
-									<div class="flex-sb"><input aria-label="First name" readonly="" class="form-control"
+									<div class="flex-sb"><input aria-label="First name" readonly="" class="form-control" id = 'oxi'
 											type="text" placeholder="To Receive" value="">
 										<div style="height: 0px; width: 0px; position: relative;">
-											<div style="position: absolute; top: -10px; left: -70px;"><div class="row"><img src="/apple-touch-icon.png" height="20" alt="bnb"><div style="width: 1px;"></div><p><span class = "back-color">BNB</span></p></div></div>
+											<div style="position: absolute; top: -10px; left: -70px;"><div class="row"><img src="/apple-touch-icon.png" height="20" alt="oxi"><div style="width: 1px;"></div><p><span class = "back-color">OXI</span></p></div></div>
 										</div>
 									</div>
 								</form>
@@ -260,10 +260,10 @@
 					<div style="width: 300px;"></div>
 					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0">
 						<div class="table-sale background-color table-shadow">
-							<h4 class="text-center">🔏Private Sale</h4>
+							<img src="/img/private.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
 							<h4 class="text-center">1 bnb</h4>
-							<p class="text-center">15,000,000 OXI</p>
+							<p class="text-center">15,000,000 <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI</p>
 							<div class="table-line mt-4 mb-4"></div>
 							<p class="text-center"></p>
 							<p class="text-center">May 2022</p>
@@ -275,10 +275,10 @@
 
 					<div class="col-xl-3 col-sm-6" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.3s">
 						<div class="table-sale background-grey">
-							<h4 class="text-center">📢Public Sale</h4>
+							<img src="/img/pub.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
 							<h4 class="text-center">1 BNB</h4>
-							<p class="text-center">10,000,000 OXI</p>
+							<p class="text-center">10,000,000 <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI</p>
 							<div class="table-line mt-4 mb-4"></div>
 
 							<p class="text-center">June/July 2022</p>
@@ -594,6 +594,15 @@
 		function myFunction() {
 			alert("IDO Coming Soon");
 		}
+		var nOxi = document.getElementById("oxi");
+		var nBNB = document.getElementById("bnb");
+
+		nBNB.addEventListener("keyup", function() {
+			nOxi.setAttribute('value',""+nBNB.value* 15000000);
+		});
+		//add eventlistener for keyboard typing
+
+
 	</script>
 
 	<!-- End Document
