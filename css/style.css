@@ -3,7 +3,12 @@
 ================================================== */
 a{
 	text-decoration: none;
+	
 }
+.pvps{	image-rendering: -webkit-optimize-contrast;}
+.disabled-link {
+	pointer-events: none;
+  }
 .exchange-box {
 	padding-top: 20px;}
 body{
