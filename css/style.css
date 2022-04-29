@@ -7,10 +7,10 @@ a{
 }
 
 .btn-group button {
-	background-color: #080808; /* Green background */
+	background-color: #9500ff; /* Green background */
 	/* Green border */
 	color: white; /* White text */
-	padding: 10px 24px; /* Some padding */
+
 	cursor: pointer; /* Pointer/hand icon */
 	float: left; /* Float the buttons side by side */
   }
@@ -2031,13 +2031,30 @@ a.first {
 a.second {
 display: inline-block;	  
 } 
+
+.p-padding{
+	padding: 500px;
+}
 /* #Medi
 ================================================== */
 
+/*.buy-padding{
+	padding-left:300px;
+}*/
+
+
 @media (max-width: 1500px) { 
+	.p-padding
+	{
+		padding: 200px;
+	}
 }
 
 @media (max-width: 1300px) {
+	.p-padding
+	{
+		padding: 200px;
+	}
 }
 
 @media (max-width: 1199px) { 
@@ -2072,9 +2089,13 @@ display: inline-block;
 	}		
 }
 
+
 @media (max-width: 991px) { 
 	.hero-center-wrap h1{
 		font-size: 50px;
+	}
+	.p-padding{
+		padding: 0;
 	}
 	.hero-center-wrap p{
 		font-weight: 500;

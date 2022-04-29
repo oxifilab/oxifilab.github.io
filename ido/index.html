@@ -191,15 +191,14 @@
 						<div style="width: 8px;"></div>
 						
 					</div>
-					<div style="width: 160px ;"></div>
-					<div style="height: 30px ;"></div>
-					<div class="col-xl-4 col-lg-6 wow fadeInRightBig" data-wow-delay="0.3s" data-wow-duration="0.5s">
+					
+					<div class=" col-lg-6  wow fadeInRightBig" data-wow-delay="0.3s" data-wow-duration="0.5s">
 						<div class="table-sale background-white table-shadow">
 
 						
 							<div class="btn-group">
-								<button class="btn " onclick="opentab(event, 'IDO')" id="defaultOpen">IDO</button>
-								<button class="btn " onclick="opentab(event, 'Airdrops')">Airdrops</button>
+								<button class="btn btn-primary js-tilt " onclick="opentab(event, 'IDO')" id="defaultOpen">IDO</button>
+								<button class="btn btn-primary js-tilt " onclick="opentab(event, 'Airdrops')"><img src="/img/gift.png" height="12"> Airdrops</button>
 
 							</div>
 							<div class="table-line mt-2 mb-4"></div>
@@ -244,8 +243,12 @@
 
 								<div style="height: 24px;"></div>
 
-								<a href="#" class="btn btn-primary js-tilt" id="buy-button"><i class="fa fa-link"></i>
+								<a href="#" class="btn btn-primary js-tilt" id="connect-buy"><i class="fa fa-link"></i>
 									Connect Wallet</a>
+									<a href="#" class="btn btn-primary js-tilt" id="buy-button" style="display: none;"><i class="fa fa-dollar"></i>
+										Buy</a>
+										<a href="#" class="btn btn-primary js-tilt" id="claim-tokens" style="display: none;"><i class="fa fa-hand-grab-o"></i>
+											Claim</a>
 							</div>
 
 							<div id="Airdrops" class="tabcontent">
@@ -290,25 +293,32 @@
 		<div id="particles-js" class="min-height"></div>
 	</div>
 
-	<div class="section padding-bottom-big" id="buy">
+	<div class="section z-bigger">
+		<div class="background-parallax" style="background-image: url('img/parallax.jpg')" data-enllax-ratio=".5" data-enllax-type="background" data-enllax-direction="vertical"></div>
+		
+		<div class="section padding-bottom-big" id="buy">
 		<div class="section mb-5">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 offset-md-2">
 						<p class="lead text-center">Oxi Token Price Over Various IDO Stages</p>
 					</div>
-					<!-- <div class="col-md-12 text-center mt-4">
-						<a class="btn btn-primary js-tilt" href="https://docs.google.com/forms/d/e/1FAIpQLSc7DTzCC-Qibkpy7yruOV4DWcNNgm8yI0z3yjwAheuPYwgAKg/viewform" role="button" data-tilt-perspective="300" data-tilt-speed="700" data-tilt-max="24"><span>Register for WhiteListing</span></a>
-					</div> -->
-
-
+					<div class="col-md-12 text-center mt-4">
+						<a class="btn btn-primary js-tilt" href="#" role="button" data-tilt-perspective="300" data-tilt-speed="700" data-tilt-max="24"><span>Buy Now</span></a>
+					</div>
+					
+					<div class="col-md-12 mt-1">
+						<ul class="payment-methods">
+							<li><img src="/img/bnb.svg" alt=""><p>BNB</p></li>
+							
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="section mt-5">
 			<div class="container">
 				<div class="row">
-					
 					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0">
 						<div class="table-sale background-white table-shadow">
 							<img class='pvps' src="/img/private.png" height="40">
@@ -343,7 +353,7 @@
 							<img class='pvps' src="/img/pub.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
 							<h4 class="text-center">1 BNB</h4>
-							<p class="text-center">***** <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
+							<p class="text-center">10,000,000 <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
 							</p>
 							<div class="table-line mt-4 mb-4"></div>
 
@@ -356,7 +366,7 @@
 							<img class='pvps' src="/img/pub.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
 							<h4 class="text-center">1 BNB</h4>
-							<p class="text-center">***** <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
+							<p class="text-center">10,000,000 <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
 							</p>
 							<div class="table-line mt-4 mb-4"></div>
 
@@ -364,9 +374,13 @@
 							<a class="btn disabled mt-5" href="#" role="button"><span>Soon</span></a>
 						</div>
 					</div>
-				</div>
+			</div>
 			</div>
 		</div>
+		</div>
+
+		
+	</div>
 	</div>
 
 
