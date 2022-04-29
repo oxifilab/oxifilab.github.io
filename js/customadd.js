@@ -533,14 +533,19 @@ async function buyToken (){
    // console.log(nBNB.value)
    // console.log (amount);
 
-    var token_bought = await ido_contract.methods.BuyOxi().send(
+   try {
+    await ido_contract.methods.BuyOxi().send(
         {
             from: account,
+            gas:  3000000,
             value: amount
         }
     )
-
-    console.log (token_bought);
+}catch(ex){
+    console.log(ex)
+    if (ex.code == 4001) window.alert("User denied transaction signature")
+    window.alert("Buy failed")
+}
 }
 
 
@@ -556,12 +561,16 @@ async function claimOxiToken (){
     console.log("BNB value to buy in BNB: ",nBNB.value)
     console.log ("BNB value to buy in wei: ",amount);
 
-    var token_bought = await ido_contract.methods.claim().send(
-        {
-            from: account,
-            value: 0
-        }
-    )
-
-    console.log (token_bought);
+    try{
+        await ido_contract.methods.claim().send(
+            {
+                from: account,
+                gas:  3000000,
+                value: 0
+            }
+        )
+    }catch(ex){
+        console.log(ex)
+        window.alert("Claim Failed! You've either claimed before or You are not eligible to claim")
+    }
 }
