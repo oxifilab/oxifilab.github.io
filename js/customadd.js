@@ -397,7 +397,7 @@ const ido_contract_abi = [
 const tokenAddress = '0x9BE2D72164F749307c6a5251b18fB427e5743B4A';
 const tokenSymbol = 'OXI';
 const tokenDecimals = 18;
-const tokenImage = 'https://www.oxifilab.co/oxitometa.png';
+const tokenImage = 'https://www.oxifilab.co/img/oxitometa.png';
 //Load MetaMask on Launch
 window.onload = function() {
     connectWallet();
