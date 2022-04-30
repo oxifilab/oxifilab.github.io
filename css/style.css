@@ -2122,7 +2122,7 @@ display: inline-block;
 		vertical-align: middle;
 	}
 	#menu-wrap{
-		position: relative;
+		position: fixed;
 		top: auto;
 		left: auto;
 	}
@@ -2203,7 +2203,7 @@ display: inline-block;
 		width: 80%;
 		margin: 0 auto;
 	}
-	.full-height.height-auto-lg	{
+	.full-height-x.height-auto-lg	{
 		height: auto;
 		padding-top: 80px;
 		padding-bottom: 180px;
@@ -2278,6 +2278,7 @@ display: inline-block;
 		text-transform: none;
 		font-size: 12px;
 		letter-spacing: 0;
+		display: inline-block;
 	}
 	.countdown li span {
 		font-size: 30px;
@@ -2313,7 +2314,8 @@ display: inline-block;
 		width: calc(50% - 20px);
 	}
 	.countdown.gradient-ver li span{
-		font-size: 45px;
+		display: inline-block;
+		font-size: 20px;
 		font-weight: 700;
 		text-shadow: 1px 4px 3px rgba(0,0,0,0.06);
 	}	

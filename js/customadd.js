@@ -2,6 +2,7 @@
 var Web3 = import ('/js/web3.min.js');
 var accounts;
 var web3;
+var click =0;
 var account;
 const ido_contract_address = "0x684b9CF0357123D7c9E9eaEFf7a0C3AfB7bE2101";
 //ABI
@@ -398,10 +399,17 @@ const tokenAddress = '0x9BE2D72164F749307c6a5251b18fB427e5743B4A';
 const tokenSymbol = 'OXI';
 const tokenDecimals = 18;
 const tokenImage = 'https://www.oxifilab.co/img/oxitometa.png';
-//Load MetaMask on Launch
-window.onload = function() {
+window.addEventListener('load', function() {
+    
+    
     connectWallet();
-  };
+  
+
+    // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+    
+  })
+//Load MetaMask on Launch
+
 document.getElementById("defaultOpen").click();
 document.getElementById("walletbutton").onclick = function () {
     connectWallet()
@@ -414,8 +422,15 @@ document.getElementById("connect-buy").onclick = function () {
     connectWallet()
 };
 document.getElementById("buy-button").onclick = function () {
+    if (document.getElementById('oxi').value.length==0){
+        //check if input ELEMENT CONTAINS STRING
+
+        alert("Please enter a valid amount");
+    }
+    
+    else {
     //claimPlaceHolder()
-    buyToken()
+    buyToken()}
 };
 
 document.getElementById("claim-tokens").onclick = function () {
@@ -470,9 +485,10 @@ async function connectWallet() {
         
    
     if (window.ethereum) {
+        document.getElementById("loader").style.display = "inline-block";
+
         
        web3 = new Web3(window.ethereum);
-        await window.ethereum.enable()
         const networkId = await web3.eth.net.getId();
         if (networkId != 97) {
             window.alert("Wrong network detected. Please switch to the BNB smart chain network.");
@@ -483,19 +499,18 @@ async function connectWallet() {
             document.getElementById("buy-button").style.display = "inline-block";
             document.getElementById("claim-tokens").style.display = "inline-block";
             document.getElementById("connect-buy").style.display = "none";
-            window.alert("Connected to the BNB smart chain network.");
+            
             await window.ethereum.request({method:'eth_requestAccounts'});
             accounts = await web3.eth.getAccounts();
             //console.log(accounts)
             account = accounts[0];
             //make account text show only begiining and end of address
             var accountText = account.substring(0, 6) + "..." + account.substring(account.length - 4, account.length);
-            document.getElementById('walletbutton').textContent = accountText;
             balance = await web3.eth.getBalance(account)
-            //get ETH Balance IN 2
-            document.getElementById('bal').textContent = await web3.utils.fromWei(balance, "ether") + " BNB";
-
-           
+            //convert balance to 4 decimal places.
+            var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(4) + " BNB"
+            document.getElementById('bal').textContent = bal;
+            document.getElementById("loader").style.display = "none";
             
             
 
@@ -504,6 +519,8 @@ async function connectWallet() {
 
             
         }
+       
+
         
 
         //contract = new web3.eth.Contract(ABI, ADDRESS);
@@ -520,7 +537,7 @@ async function buyToken (){
     
 
     
-   
+    document.getElementById("loader").style.display = "inline-block";
     
     var ido_contract = new web3.eth.Contract(ido_contract_abi,ido_contract_address);
 
@@ -530,6 +547,35 @@ async function buyToken (){
     var amount = await web3.utils.toWei(nBNB.value)
    // console.log(nBNB.value)
    // console.log (amount);
+   try {
+    await ido_contract.methods.BuyOxi().call(
+        {
+            from: account,
+            gas:  300000,
+            value: amount
+        }
+    )
+  }
+  catch (err) {
+    //check err for message
+   
+    if (err.message.includes('execution reverted: Less then min amount')){
+        alert("Less than Minimum Amount");
+    }
+    else if (err.message.includes('execution reverted: Insufficient funds')){
+        alert("Insufficient funds");
+    }
+    else if (err.message.includes('execution reverted: Insufficient gas')){
+        alert("Insufficient gas");
+    }
+    else if (err.message.includes('execution reverted: Insufficient balance')){
+        alert("Insufficient balance");
+    }
+    else if (err.message.includes('execution reverted: Invalid amount')){
+        alert("Invalid amount");
+    }
+   
+  }
 
    try {
     await ido_contract.methods.BuyOxi().send(
@@ -538,26 +584,38 @@ async function buyToken (){
             gas:  300000,
             value: amount
         }
+
     )
+    document.getElementById("loader").style.display = "none";
 }catch(ex){
+    document.getElementById("loader").style.display = "none";
     console.log(ex)
-    if (ex.code == 4001) window.alert("User denied transaction signature")
-    window.alert("Buy failed")
+    const data = ex.data;
+    const txHash = Object.keys(data)[0]; // TODO improve
+    const reason = data[txHash].reason;
+
+    console.log(reason); 
+    if (ex.code == 4001) window.alert("Transaction Canceled")
+   
 }
 }
 
 //Claim Token After Buying
 async function claimOxiToken (){
+    document.getElementById("loader").style.display = "inline-block";
+
     
     var ido_contract = new web3.eth.Contract(ido_contract_abi,ido_contract_address);
   
     accounts = await web3.eth.getAccounts();
+   
 
     account = accounts[0];
   
-    
+   
 
     try{
+       
         await ido_contract.methods.claim().send(
             {
                 from: account,
@@ -565,7 +623,10 @@ async function claimOxiToken (){
                 value: 0
             }
         )
+        document.getElementById("loader").style.display = "none";
+        
     }catch(ex){
+        document.getElementById("loader").style.display = "none";
         console.log(ex)
         window.alert("Claim Failed! You've either claimed before or You are not eligible to claim")
     }
@@ -573,27 +634,41 @@ async function claimOxiToken (){
 
 
 document.getElementById('add-to-metamask').onclick = function () {
+    
+    console.log(click);
+    if (click <1){
+   
     addtoMeta();
+    click = 1;
+    }else {
+        window.alert("Requesting Too Much, Reload Page");
+    }
 }
 
 //Add OXI to MetaMask
 async function addtoMeta() {
+
+    
     // document.getElementById("loader").style.display = "block";
-         
+      if (click < 1) {  
+        document.getElementById("loader").style.display = "inline-block";
     
      if (window.ethereum) {
-         
+        //document.getElementById("loader").style.display = "block";
         web3 = new Web3(window.ethereum);
-         await window.ethereum.enable()
+         
          const networkId = await web3.eth.net.getId();
+         
          if (networkId != 97) {
-             window.alert("Switch to BNB");
+             window.alert("Switch to BNB Chain");
              //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
          } else {
             
-           
+            //document.getElementById("loader").style.display = "none";
             
             try {
+                document.getElementById("loader").style.display = "none";
+                
               // wasAdded is a boolean. Like any RPC method, an error may be thrown.
               const wasAdded = await window.ethereum.request({
                 method: 'wallet_watchAsset',
@@ -606,18 +681,21 @@ async function addtoMeta() {
                     image: tokenImage, // A string url of the token logo
                   },
                 },
+                
               });
-
-              console.log(wasAdded);
+             
+              
               
             
               if (wasAdded) {
                 Window.alert("Added to OXI MetaMask");
               } else {
+                
                 Window.alert("Try Again");
               }
             } catch (error) {
               console.log(error);
+              
             }
             
             
@@ -637,8 +715,11 @@ async function addtoMeta() {
          }
          
      
-     return newWeb3
- }
+     return web3
+    }
+    else{
+      
+    }
 
-
+}
 
