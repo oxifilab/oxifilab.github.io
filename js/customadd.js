@@ -457,16 +457,7 @@ function claimPlaceHolder() {
 function connectPlaceHolder() {
     alert("Still working on it");
 }
-const fadeOutEffect = setInterval(() => {
-    if (!preloader.style.opacity) {
-      preloader.style.opacity = 1;
-    }
-    if (preloader.style.opacity > 0) {
-      preloader.style.opacity -= 0.1;
-    } else {
-      clearInterval(fadeEffect);
-    }
-  }, 300);
+
 
 async function connectWallet() {
    // document.getElementById("loader").style.display = "block";
@@ -481,6 +472,7 @@ async function connectWallet() {
             window.alert("Wrong network detected. Please switch to the BNB smart chain network.");
             //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
         } else {
+           
           //  document.getElementById("loader").style.display = "none";
             document.getElementById("buy-button").style.display = "inline-block";
             document.getElementById("claim-tokens").style.display = "inline-block";
@@ -574,3 +566,73 @@ async function claimOxiToken (){
         window.alert("Claim Failed! You've either claimed before or You are not eligible to claim")
     }
 }
+
+
+document.getElementById('add-to-metamask').onclick = function () {
+    addtoMeta();
+}
+async function addtoMeta() {
+    // document.getElementById("loader").style.display = "block";
+         
+    
+     if (window.ethereum) {
+         
+        web3 = new Web3(window.ethereum);
+         await window.ethereum.enable()
+         const networkId = await web3.eth.net.getId();
+         if (networkId != 56) {
+             window.alert("Wrong network detected. Please switch to the BNB smart chain network.");
+             //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
+         } else {
+            
+            const tokenAddress = '0x14B5BAF99c92d881157964DE8466578d266Ba5eA';
+            const tokenSymbol = 'OXI';
+            const tokenDecimals = 18;
+            const tokenImage = 'https://www.oxifilab.co/coin-oxi.png';
+            
+            try {
+              // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+              const wasAdded = await ethereum.request({
+                method: 'wallet_watchAsset',
+                params: {
+                  type: 'ERC20', // Initially only supports ERC20, but eventually more!
+                  options: {
+                    address: tokenAddress, // The address that the token is at.
+                    symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+                    decimals: tokenDecimals, // The number of decimals in the token
+                    image: tokenImage, // A string url of the token logo
+                  },
+                },
+              });
+            
+              if (wasAdded) {
+                console.log('Thanks for your interest!');
+              } else {
+                console.log('Your loss!');
+              }
+            } catch (error) {
+              console.log(error);
+            }
+            
+            
+             
+             
+ 
+           
+            
+ 
+             
+         }
+         
+ 
+         //contract = new web3.eth.Contract(ABI, ADDRESS);
+     } else {
+           window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+         }
+         
+     
+     return web3
+ }
+
+
+

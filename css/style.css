@@ -979,7 +979,7 @@ mark{
 
 .countdown{
 	position: relative;
-	padding: 40px;
+	padding-left: 0px;
 	margin: 0 auto;
 	text-align: center;
 	border-radius: 15px;
@@ -987,6 +987,7 @@ mark{
 .countdown.gradient-ver{
 	padding: 0;
 	border-radius: 0;
+	
 }
 .translateY-70{
 	-webkit-transform: translateY(-70px);
@@ -1016,11 +1017,11 @@ mark{
 	padding: 0;
 	min-width: calc(24% - 10px);
 	margin: 0 auto;
-	text-align: center;
+	text-align: left;
 	margin-left: 5px;
 	margin-right: 5px;
 	text-transform: uppercase;
-	font-size: 12px;
+	font-size: 10px;
 	letter-spacing: 1px;
 	border-radius: 5px;
 	padding-top: 10px;
@@ -1029,7 +1030,7 @@ mark{
 .countdown.gradient-ver li {
 	min-width: auto;
 	max-width: calc(24% - 10px);
-	width: 140px;
+	width: 160px;
 	box-shadow: none;
 	color: #fff;
 }
@@ -1043,7 +1044,7 @@ mark{
 	margin-bottom: 5px;
 }
 .countdown.gradient-ver li span{
-	font-size: 100px;
+	font-size: 50px;
 	font-weight: 700;
 	color: #fff;
 	letter-spacing:0;
