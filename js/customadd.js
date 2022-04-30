@@ -4,7 +4,9 @@ var accounts;
 var web3;
 var click =0;
 var account;
-const ido_contract_address = "0x684b9CF0357123D7c9E9eaEFf7a0C3AfB7bE2101";
+var tocheckErr;
+
+const ido_contract_address = "0x05c665531eB10B5258c3646c211E55E875E3B74D";
 //ABI
 const ido_contract_abi = [
     {
@@ -131,7 +133,7 @@ const ido_contract_abi = [
     },
     {
         "inputs": [],
-        "name": "BuyOxi",
+        "name": "buyOxi",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"
@@ -510,6 +512,7 @@ async function connectWallet() {
             //convert balance to 4 decimal places.
             var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(4) + " BNB"
             document.getElementById('bal').textContent = bal;
+            document.getElementById('walletbutton').textContent = accountText;
             document.getElementById("loader").style.display = "none";
             
             
@@ -548,17 +551,32 @@ async function buyToken (){
    // console.log(nBNB.value)
    // console.log (amount);
    try {
-    await ido_contract.methods.BuyOxi().call(
+    await ido_contract.methods.buyOxi().call(
         {
             from: account,
             gas:  300000,
             value: amount
         }
     )
+    // Run this if there is no error
+            await ido_contract.methods.buyOxi().send(
+                {
+                    from: account,
+                    gas:  300000,
+                    value: amount
+                }
+        
+            )
+            document.getElementById("loader").style.display = "none";
   }
   catch (err) {
+      if (err.message != "") {
+        document.getElementById("loader").style.display = "none";
+    }
+    
     //check err for message
-   
+   console.log(err);
+
     if (err.message.includes('execution reverted: Less then min amount')){
         alert("Less than Minimum Amount");
     }
@@ -574,11 +592,43 @@ async function buyToken (){
     else if (err.message.includes('execution reverted: Invalid amount')){
         alert("Invalid amount");
     }
-   
+    else if (err.message.includes('execution reverted: Not started')){
+        alert("Ido has not Started yet");
+    }
+    else if (err.message.includes('execution reverted: Already ended')){
+        alert("Ido has ended");
+    }
+    else if (err.message.includes('insufficient funds for transfer: address ')){
+        alert("Not Enough Balance to Buy");
+    }
+    else if (err.message.includes('execution reverted: More then max amount')){
+        alert("You can only Buy 10 BNB of OXI at a time");
+    }
+    //else {
+       
+        /* catch(ex){
+            document.getElementById("loader").style.display = "none";
+            console.log(ex)
+            const data = ex.data;
+            const txHash = Object.keys(data)[0]; // TODO improve
+            const reason = data[txHash].reason;
+        
+            console.log(reason); 
+            if (ex.code == 4001) window.alert("Transaction Canceled")
+            */
+        
+  
+    //}
+  }finally{
+      //UPDATES BALANCE AFTER CLAIM
+    document.getElementById("loader").style.display = "none";
+    balance = await web3.eth.getBalance(account)
+    //convert balance to 4 decimal places.
+    var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(4) + " BNB"
+    document.getElementById('bal').textContent = bal;
   }
-
-   try {
-    await ido_contract.methods.BuyOxi().send(
+ /*   try {
+    await ido_contract.methods.buyOxi().send(
         {
             from: account,
             gas:  300000,
@@ -597,11 +647,14 @@ async function buyToken (){
     console.log(reason); 
     if (ex.code == 4001) window.alert("Transaction Canceled")
    
-}
+} */
 }
 
 //Claim Token After Buying
+
 async function claimOxiToken (){
+
+    
     document.getElementById("loader").style.display = "inline-block";
 
     
@@ -612,25 +665,54 @@ async function claimOxiToken (){
 
     account = accounts[0];
   
-   
+    
 
     try{
-       
-        await ido_contract.methods.claim().send(
+        await ido_contract.methods.claim().call(
             {
                 from: account,
                 gas:  300000,
                 value: 0
             }
         )
-        document.getElementById("loader").style.display = "none";
+   
+     await ido_contract.methods.claim().send(
+            {
+                from: account,
+                gas:  300000,
+                value: 0
+            }
+        )
+      
         
-    }catch(ex){
+        
+    }catch(err){
         document.getElementById("loader").style.display = "none";
-        console.log(ex)
-        window.alert("Claim Failed! You've either claimed before or You are not eligible to claim")
+        console.log(err);
+        if(err.message.includes("execution reverted: Not Enough Tokens For Claim")){
+            alert("Please Wait, Come Back Later");
+        }
+        else if(err.message.includes("execution reverted: You have not Bought Oxi Yet"
+        )){
+            alert("Purchase Oxi before Claiming");
+        }
+        else if(err.message.includes("execution reverted: Distribution not started"
+        )){
+            alert("Distribution has not Started yet");
+        }
+        }finally{
+
+            //UPDATES BALANCE AFTER CLAIM
+            document.getElementById("loader").style.display = "none";
+         balance = await web3.eth.getBalance(account)
+    //convert balance to 4 decimal places.
+    var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(4) + " BNB"
+    document.getElementById('bal').textContent = bal;
+            document.getElementById("loader").style.display = "none";
+        }
+       
     }
-}
+
 
 
 document.getElementById('add-to-metamask').onclick = function () {

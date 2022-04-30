@@ -103,7 +103,7 @@ mark{
 	z-index: 10;
 }
 .account_money {
-    margin-right: 20px;
+    margin-right: 18px;
 }
 @media only screen and (max-width: 767px) {
     .account_money {
