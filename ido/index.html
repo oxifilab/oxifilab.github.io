@@ -108,7 +108,7 @@
 
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav ml-auto">
-								
+
 								<li class="nav-item">
 									<a class="nav-link" href="#ido">IDO</a>
 								</li>
@@ -123,9 +123,10 @@
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="/#contact">Reach us</a>
-								</li> 
+								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="https://bscscan.com/token/0x14b5baf99c92d881157964de8466578d266ba5ea">Contract</a>
+									<a class="nav-link"
+										href="https://bscscan.com/token/0x14b5baf99c92d881157964de8466578d266ba5ea">Contract</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="https://docs.oxifilab.co">Docs</a>
@@ -136,14 +137,16 @@
 										role="button" data-tilt-perspective="300" data-tilt-speed="700"
 										data-tilt-max="24"><span>Connect wallet</span></button>
 								</li> -->
-								
+
 								<div class="dashboard_log my-2">
 									<div class="d-flex align-items-center">
 										<div class="account_money">
 											<ul>
 												<li class="crypto" style="border-radius: 30px 0px 0px 30px;"><span
-														id="bal">0.00 BNB</span><img class = 'pvps' src="/img/bnb.png" height="30" alt="bnb"></li>
-												<li class="usd" ><a id="walletbutton" href="#"><span>Connect</span></a></li>
+														id="bal">0.00 BNB</span><img class='pvps' src="/img/bnb.png"
+														height="30" alt="bnb"></li>
+												<li class="usd"><a  id="walletbutton" href="#"><span>Connect</span></a>
+												</li>
 											</ul>
 										</div>
 									</div>
@@ -160,75 +163,134 @@
 	<!-- Primary Page Layout
 	================================================== -->
 
-	<div class="section full-height height-auto-lg hide-over background-light-blue" id="ido">
+	<div class="section full-height-x height-auto-lg hide-over background-light-blue" id="ido">
 		<div class="hero-center-wrap relative-on-lg">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 text-center text-lg-left  align-self-center z-bigger ">
-						<p>🔏 Private Sale <span class="back-color">Whitelisting</span> <span class="font-big-color">50%
+						
+						<p>🔏 Private Sale/ PreSales <span class="back-color">is Coming</span> <span class="font-big-color">50%
 								Profit Over Public Sales</span></p>
 
 
 						<div class="col-md-12  ">
-							<h1>Register For Private Sales </h1>
+							<h1>MAY 3, 2022</h1>
+							
+						</div>
+						
+						<div class="col-md-12 mb-1 ">
+							
+
+						
+							<p><span class="back-color ">PreSales / Private Sales</span></p>
+
+							
 						</div>
 						<div class="col-md-12 mb-1 ">
-							<div style="width: 80px;"></div>
-							
 						
+						<div class="countdown gradient-ver">
+							<div class="section">
+								<ul>
+									<li><span id="days"></span><p>days</p></li>
+									<li><span id="hours"></span><p>hours</p></li>
+									<li><span id="minutes"></span><p>minutes</p></li>
+									<li><span id="seconds"></span><p>seconds</p></li>
+								</ul>
+							</div>
+						</div>
+						</div>
 
-							<p><span class="back-color ">MIN : 1 BNB </span></p>
-							
-							<p><span class="back-color">MAX : 10 BNB </span></p></div>
-						
+
 						<div class="col-md-12  mb-1 ">
-							<p><span class="font-big-color">19/4/2022 -25/4/2022 </span></p>
+							<p><span class="font-big-color"><i class="fa fa-clock-o"></i> 48 Hours Token Sale </span></p>
 						</div>
 						<div style="width: 8px;"></div>
-						<a class="btn btn-primary js-tilt"
-							href="https://docs.google.com/forms/d/e/1FAIpQLSc7DTzCC-Qibkpy7yruOV4DWcNNgm8yI0z3yjwAheuPYwgAKg/viewform"
-							role="button" data-tilt-perspective="300" data-tilt-speed="700"
-							data-tilt-max="24"><span>Register for WhiteListing</span></a>
+						
 					</div>
-					<div style="width: 160px ;"></div>
-					<div style="height: 30px ;"></div>
-					<div class="col-xl-4 col-lg-6 wow fadeInRightBig" data-wow-delay="0.3s" data-wow-duration="0.5s">
+					<div class=" col-lg-6  wow fadeInRightBig" data-wow-delay="0.3s" data-wow-duration="0.5s">
 						<div class="table-sale background-white table-shadow">
 
-							<div class="exchange-box">
-								<img  src="/img/buyoxi.png" height="100" alt="Buy">
-								<p><span class="back-color " >1 BNB = 15,000,000 OXI* </span></p>
+						
+							<div class="btn-group">
+								<button class="btn " onclick="opentab(event, 'IDO')" id="defaultOpen">IDO</button>
+								<button class="btn " onclick="opentab(event, 'Airdrops')">Airdrops</button>
+
+							</div>
+							<div class="table-line mt-2 mb-4"></div>
+							<div id="IDO" class="tabcontent">
+								<img src="/img/buyoxi.png" height="100" alt="Buy">
+								<p><span class="back-color ">1 BNB = 15,000,000 OXI* </span></p>
 								<div style="height: 8px;"></div>
 								<p>*Private sale</p>
-								<div style="height: 30px ;"></div>
-							
-					
+								<div class="table-line mt-2 mb-4"></div>
+								<div style="height: 15px ;"></div>
+
+
 
 								<form action="#" id="ido-form">
-									<div class="flex-sb"><input  aria-label="bnb" id="bnb" 
-											class="form-control" type="text" placeholder="Enter Amount" value="" maxlength="7">
+									<div class="flex-sb"><input aria-label="bnb" id="bnb" class="form-control"
+											type="text" placeholder="Enter Amount" value="" maxlength="7">
 										<div style="height: 0px; width: 0px; position: relative;">
-											<div style="position: absolute; top: -10px; left: -70px;"><div class="row"><img class = 'pvps' src="/img/bnb.png" height="20" alt="bnb"><div style="width: 1px;"></div><p><span class = "back-color">BNB</span></p></div></div>
+											<div style="position: absolute; top: -10px; left: -70px;">
+												<div class="row"><img class='pvps' src="/img/bnb.png" height="20"
+														alt="bnb">
+													<div style="width: 1px;"></div>
+													<p><span class="back-color">BNB</span></p>
+												</div>
+											</div>
 										</div>
 									</div>
-									<div class="flex-sb"><input aria-label="oxi" readonly="" class="form-control" id = 'oxi'
-											type="number" placeholder="To Receive" value="">
+									<div class="flex-sb"><input aria-label="oxi" readonly="" class="form-control"
+											id='oxi' type="text" placeholder="To Receive" value="">
 										<div style="height: 0px; width: 0px; position: relative;">
-											<div style="position: absolute; top: -10px; left: -70px;"><div class="row"><img src="/apple-touch-icon.png" height="20" alt="oxi"><div style="width: 1px;"></div><p><span class = "back-color">OXI</span></p></div></div>
+											<div style="position: absolute; top: -10px; left: -70px;">
+												<div class="row"><img src="/apple-touch-icon.png" height="20" alt="oxi">
+													<div style="width: 1px;"></div>
+													<p><span class="back-color">OXI</span></p>
+												</div>
+											</div>
 										</div>
 									</div>
 								</form>
+								<div style="height: 24px;"></div>
 
 
+
+								<div style="height: 24px;"></div>
+
+								<a href="#" class="btn btn-primary js-tilt" id="buy-button"><i class="fa fa-link"></i>
+									Connect Wallet</a>
 							</div>
-							<div style="height: 24px;"></div>
+
+							<div id="Airdrops" class="tabcontent">
+								<img src="/img/dropsoxi.png" height="100" alt="Buy">
+								<p><span class="back-color ">Claim Airdrops </span></p>
+								<div style="height: 8px;"></div>
+								<p>*From May 3 , 2022</p>
+								<div class="table-line mt-2 mb-4"></div>
+								<div style="height: 15px ;"></div>
+								<h6 class = 'bil'>New Members, Register and Complete tasks<br/>
+								
+
+								<a href="https://t.me/OXIFILABAirdrop_bot">https://t.me/OXIFILABAirdrop_bot</a></h6>
+								<div style="height: 5px;"></div>
+								<P><span>OR</span></P>
+								<div style="height: 10px;"></div>
+								<h6 class = 'bil'>Already Registered ?</h6>
+								
+								
+								
+								
+
+								
+								<a class="btn btn-primary js-tilt" href="#" id="claim-airdrops"><i class="fa fa-bell"></i>	Claim </a>
+							</div>
 
 
 
-							<div style="height: 24px;"></div>
+							
 
-							<a href="#" class="btn btn-primary js-tilt" id="buy-button"><i class="fa fa-link"></i>
-								Connect Wallet</a>
+
 						</div>
 					</div>
 
@@ -260,13 +322,14 @@
 		<div class="section mt-5">
 			<div class="container">
 				<div class="row">
-					<div style="width: 300px;"></div>
+					
 					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0">
 						<div class="table-sale background-white table-shadow">
-							<img class = 'pvps' src="/img/private.png" height="40">
+							<img class='pvps' src="/img/private.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
 							<h4 class="text-center">1 bnb</h4>
-							<p class="text-center">15,000,000 <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI</p>
+							<p class="text-center">15,000,000 <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
+							</p>
 							<div class="table-line mt-4 mb-4"></div>
 							<p class="text-center"></p>
 							<p class="text-center">May 2022</p>
@@ -276,12 +339,39 @@
 						</div>
 					</div>
 
-					<div class="col-xl-3 col-sm-6" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.3s">
+					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.3s">
 						<div class="table-sale background-grey">
-							<img class = 'pvps' src="/img/pub.png" height="40">
+							<img class='pvps' src="/img/pub.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
 							<h4 class="text-center">1 BNB</h4>
-							<p class="text-center">10,000,000 <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI</p>
+							<p class="text-center">10,000,000 <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
+							</p>
+							<div class="table-line mt-4 mb-4"></div>
+
+							<p class="text-center">June/July 2022</p>
+							<a class="btn disabled mt-5" href="#" role="button"><span>Soon</span></a>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.3s">
+						<div class="table-sale background-grey">
+							<img class='pvps' src="/img/pub.png" height="40">
+							<div class="table-line mt-4 mb-4"></div>
+							<h4 class="text-center">1 BNB</h4>
+							<p class="text-center">***** <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
+							</p>
+							<div class="table-line mt-4 mb-4"></div>
+
+							<p class="text-center">June/July 2022</p>
+							<a class="btn disabled mt-5" href="#" role="button"><span>Soon</span></a>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.3s">
+						<div class="table-sale background-grey">
+							<img class='pvps' src="/img/pub.png" height="40">
+							<div class="table-line mt-4 mb-4"></div>
+							<h4 class="text-center">1 BNB</h4>
+							<p class="text-center">***** <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
+							</p>
 							<div class="table-line mt-4 mb-4"></div>
 
 							<p class="text-center">June/July 2022</p>
@@ -485,54 +575,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- 		<form id="contact-form" class="mt-5" method="post" action="contact.php" role="form" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.3s">
-				<div class="row justify-content-center">
-					<div class="col-md-8">
-						<div class="messages text-center"></div>
-					</div>
-				</div>
-				<div class="controls">
-					<div class="row justify-content-center">
-						<div class="col-md-4">
-							<div class="form-group text-center">
-								<input id="form_name" type="text" name="name" class="form-control text-center" placeholder="Enter your first name *" required="required" data-error="First name is required.">
-								<div class="help-block with-errors"></div>
-							</div>
-						</div>
-						<div class="col-md-4 mt-3 mt-md-0">
-							<div class="form-group text-center">
-								<input id="form_lastname" type="text" name="surname" class="form-control text-center" placeholder="Enter your last name *" required="required" data-error="Last name is required.">
-								<div class="help-block with-errors"></div>
-							</div>
-						</div>
-					</div>
-					<div class="row justify-content-center">
-						<div class="col-md-4 mt-3">
-							<div class="form-group text-center">
-								<input id="form_email" type="email" name="email" class="form-control text-center" placeholder="Enter your email *" required="required" data-error="Valid email is required.">
-								<div class="help-block with-errors"></div>
-							</div>
-						</div>
-						<div class="col-md-4 mt-3">
-							<div class="form-group text-center">
-								<input id="form_phone" type="tel" name="phone" class="form-control text-center" placeholder="Enter your phone">
-								<div class="help-block with-errors"></div>
-							</div>
-						</div>
-					</div>
-					<div class="row justify-content-center">
-						<div class="col-md-8 mt-3">
-							<div class="form-group text-center">
-								<textarea id="form_message" name="message" class="form-control text-center" placeholder="Your message *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
-								<div class="help-block with-errors textarea-error"></div>
-							</div>
-						</div>
-						<div class="col-md-8 mt-3 text-center">
-							<input type="submit" class="btn btn-primary btn-send text-center" value="Send message">
-						</div>
-					</div>
-				</div>
-			</form>	 -->
+		
 		</div>
 	</div>
 
@@ -593,20 +636,10 @@
 	<script src="/js/chart-custom.js"></script>
 	<script src="/js/particles.js"></script>
 	<script src="/js/custom.js"></script>
-	<script>
-		function myFunction() {
-			alert("IDO Coming Soon");
-		}
-		var nOxi = document.getElementById("oxi");
-		var nBNB = document.getElementById("bnb");
-
-		nBNB.addEventListener("keyup", function() {
-			nOxi.setAttribute('value',""+nBNB.value* 15000000);
-		});
-		//add eventlistener for keyboard typing
+	<script src ="/js/customadd.js"></script>
 
 
-	</script>
+
 
 	<!-- End Document
 ================================================== -->

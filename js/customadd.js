@@ -1,9 +1,10 @@
-
+//Const and Var
 var Web3 = import ('/js/web3.min.js');
 var accounts;
 var web3;
 var account;
 const ido_contract_address = "0x684b9CF0357123D7c9E9eaEFf7a0C3AfB7bE2101";
+//ABI
 const ido_contract_abi = [
     {
         "inputs": [
@@ -393,6 +394,11 @@ const ido_contract_abi = [
         "type": "function"
     }
 ];
+const tokenAddress = '0x9BE2D72164F749307c6a5251b18fB427e5743B4A';
+const tokenSymbol = 'OXI';
+const tokenDecimals = 18;
+const tokenImage = 'https://www.oxifilab.co/oxitometa.png';
+//Load MetaMask on Launch
 window.onload = function() {
     connectWallet();
   };
@@ -529,7 +535,7 @@ async function buyToken (){
     await ido_contract.methods.BuyOxi().send(
         {
             from: account,
-            gas:  3000000,
+            gas:  300000,
             value: amount
         }
     )
@@ -540,24 +546,22 @@ async function buyToken (){
 }
 }
 
-
+//Claim Token After Buying
 async function claimOxiToken (){
     
     var ido_contract = new web3.eth.Contract(ido_contract_abi,ido_contract_address);
-    console.log("connected to the ido contract successfully");
+  
     accounts = await web3.eth.getAccounts();
-    console.log("Accounts: ",accounts);
+
     account = accounts[0];
-    console.log("Account chosen: ", account);
-    var amount = await web3.utils.toWei(nBNB.value)
-    console.log("BNB value to buy in BNB: ",nBNB.value)
-    console.log ("BNB value to buy in wei: ",amount);
+  
+    
 
     try{
         await ido_contract.methods.claim().send(
             {
                 from: account,
-                gas:  3000000,
+                gas:  300000,
                 value: 0
             }
         )
@@ -571,6 +575,8 @@ async function claimOxiToken (){
 document.getElementById('add-to-metamask').onclick = function () {
     addtoMeta();
 }
+
+//Add OXI to MetaMask
 async function addtoMeta() {
     // document.getElementById("loader").style.display = "block";
          
@@ -580,19 +586,16 @@ async function addtoMeta() {
         web3 = new Web3(window.ethereum);
          await window.ethereum.enable()
          const networkId = await web3.eth.net.getId();
-         if (networkId != 56) {
-             window.alert("Wrong network detected. Please switch to the BNB smart chain network.");
+         if (networkId != 97) {
+             window.alert("Switch to BNB");
              //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
          } else {
             
-            const tokenAddress = '0x14B5BAF99c92d881157964DE8466578d266Ba5eA';
-            const tokenSymbol = 'OXI';
-            const tokenDecimals = 18;
-            const tokenImage = 'https://www.oxifilab.co/coin-oxi.png';
+           
             
             try {
               // wasAdded is a boolean. Like any RPC method, an error may be thrown.
-              const wasAdded = await ethereum.request({
+              const wasAdded = await window.ethereum.request({
                 method: 'wallet_watchAsset',
                 params: {
                   type: 'ERC20', // Initially only supports ERC20, but eventually more!
@@ -604,11 +607,14 @@ async function addtoMeta() {
                   },
                 },
               });
+
+              console.log(wasAdded);
+              
             
               if (wasAdded) {
-                console.log('Thanks for your interest!');
+                Window.alert("Added to OXI MetaMask");
               } else {
-                console.log('Your loss!');
+                Window.alert("Try Again");
               }
             } catch (error) {
               console.log(error);
@@ -631,7 +637,7 @@ async function addtoMeta() {
          }
          
      
-     return web3
+     return newWeb3
  }
 
 

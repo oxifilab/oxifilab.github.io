@@ -228,6 +228,11 @@ mark{
 .full-height {
 	height: 100vh;
 }
+.full-height-x {
+	height: 110vh;
+}
+
+
 .half-height {
 	height: 50vh;
 }
@@ -1044,7 +1049,7 @@ mark{
 	margin-bottom: 5px;
 }
 .countdown.gradient-ver li span{
-	font-size: 50px;
+	font-size: 52px;
 	font-weight: 700;
 	color: #fff;
 	letter-spacing:0;
