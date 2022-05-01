@@ -94,11 +94,29 @@
 			let now = new Date().getTime(),
 				distance = countDown - now;
 
-			document.getElementById('days').innerHTML = Math.floor(distance / (day)),
-			document.getElementById('hours').innerHTML = Math.floor((distance % (day)) / (hour)),
-			document.getElementById('minutes').innerHTML = Math.floor((distance % (hour)) / (minute)),
-			document.getElementById('seconds').innerHTML = Math.floor((distance % (minute)) / second);
+			document.getElementById('days').innerHTML = Math.floor(distance / (day)) + ' days',
+			document.getElementById('hours').innerHTML = Math.floor((distance % (day)) / (hour)) + ' hours',
+			document.getElementById('minutes').innerHTML = Math.floor((distance % (hour)) / (minute)) +	' minutes',
+			document.getElementById('seconds').innerHTML = Math.floor((distance % (minute)) / second) + ' seconds';
 		}, second)
+
+		
+			//OtherCountdown
+			
+			const secondx = 1000,
+			minutex = secondx * 60,
+			hourx = minutex * 60,
+			dayx = hourx * 24;
+		let countDownx = new Date('May 5, 2022 11:00:00').getTime(),
+			xx = setInterval(function() {
+			let nowx = new Date().getTime(),
+				distancex = countDownx - nowx;
+
+			document.getElementById('idays').innerHTML = Math.floor(distancex / (dayx)) + " Days",
+			document.getElementById('ihours').innerHTML = Math.floor((distancex % (dayx)) / (hourx)) + " Hours",
+			document.getElementById('iminutes').innerHTML = Math.floor((distancex % (hourx)) / (minutex)) + " Minutes",
+			document.getElementById('iseconds').innerHTML = Math.floor((distancex % (minutex)) / secondx) + " Seconds";
+		}, secondx)
 
 		
 		/* Roadmap Carousel */		
@@ -148,44 +166,11 @@
 		
 		/* Contact form */		
 
-		$('#contact-form').validator();
+		
 
 
 		// when the form is submitted
-		$('#contact-form').on('submit', function (e) {
-
-			// if the validator does not prevent form submit
-			if (!e.isDefaultPrevented()) {
-				var url = "contact.php";
-
-				// POST values in the background the the script URL
-				$.ajax({
-					type: "POST",
-					url: url,
-					data: $(this).serialize(),
-					success: function (data)
-					{
-						// data = JSON object that contact.php returns
-
-						// we recieve the type of the message: success x danger and apply it to the 
-						var messageAlert = 'alert-' + data.type;
-						var messageText = data.message;
-
-						// let's compose Bootstrap alert box HTML
-						var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
-						
-						// If we have messageAlert and messageText
-						if (messageAlert && messageText) {
-							// inject the alert to .messages div in our form
-							$('#contact-form').find('.messages').html(alertBox);
-							// empty the form
-							$('#contact-form')[0].reset();
-						}
-					}
-				});
-				return false;
-			}
-		})
+		
 
 			
 						

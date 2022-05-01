@@ -823,6 +823,9 @@ const token_abi = [
 const tokenSymbol = 'OXI';
 const tokenDecimals = 18;
 const tokenImage = 'https://www.oxifilab.co/img/oxitometa.png';
+
+window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
+
 window.addEventListener('load', function() {
     
     
@@ -837,7 +840,10 @@ window.addEventListener('load', function() {
 
 document.getElementById("defaultOpen").click();
 document.getElementById("walletbutton").onclick = function () {
-    connectWallet()
+    if (checkConnect == true) {
+        window.alert(account);
+    } else {
+    connectWallet()}
 };
 document.getElementById("claim-airdrops").onclick = function () {
     claimPlaceHolder()
@@ -931,6 +937,7 @@ async function connectWallet() {
         const networkId = await web3.eth.net.getId();
         checkConnect = true;
         if (networkId != 97) {
+            document.getElementById("loader").style.display = "none";
             window.alert("Wrong network detected. Please switch to the BNB smart chain network.");
             //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
         } else {
