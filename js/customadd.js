@@ -824,6 +824,10 @@ const tokenSymbol = 'OXI';
 const tokenDecimals = 18;
 const tokenImage = 'https://www.oxifilab.co/img/oxitometa.png';
 
+const chainID = '0x61'; //0x38
+const chainName ='Binance Chain Test Network'; //'BNB Smart Chain Mainnet';
+const rpcUrls = 'https://data-seed-prebsc-1-s1.binance.org:8545/'; //'https://bsc-dataseed1.binance.org/';
+
 
 
 window.addEventListener('load', function() {
@@ -939,6 +943,7 @@ async function connectWallet() {
         if (networkId != 97) {
             document.getElementById("loader").style.display = "none";
             window.alert("Wrong network detected. Please switch to the BNB smart chain network.");
+            addBNB();
             //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
         } else {
            
@@ -1187,6 +1192,39 @@ document.getElementById('add-to-metamask').onclick = function () {
         window.alert("Requesting Too Much, Reload Page");
     }
 }
+document.getElementById('addbnbchain').onclick = function () {
+    addBNB();
+}
+
+async function addBNB(){
+
+    try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: chainID }],
+        });
+      } catch (switchError) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        if (switchError.code === 4902) {
+          try {
+            await window.ethereum.request({
+              method: 'wallet_addEthereumChain',
+              params: [
+                {
+                  chainId: chainID,
+                  chainName: chainName,
+                  rpcUrls: [rpcUrls] /* ... */,
+                },
+              ],
+            });
+          } catch (addError) {
+            // handle "add" error
+          }
+        }
+        // handle other "switch" errors
+      }
+}
+//add bnbchain to metamask
 
 //Add OXI to MetaMask
 async function addtoMeta() {
@@ -1204,6 +1242,7 @@ async function addtoMeta() {
          
          if (networkId != 97) {
              window.alert("Switch to BNB Chain");
+             document.getElementById("loader").style.display = "none";
              //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
          } else {
             
