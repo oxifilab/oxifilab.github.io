@@ -842,6 +842,8 @@ window.addEventListener('load', function () {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
 
 })
+
+
 //Load MetaMask on Launch
 
 document.getElementById("defaultOpen").click();
@@ -928,7 +930,7 @@ function claimPlaceHolder() {
 }
 
 function connectPlaceHolder() {
-    alert("Still working on it");
+    alert("May 3 is the day");
 }
 
 

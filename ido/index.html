@@ -137,6 +137,10 @@
 										role="button" data-tilt-perspective="300" data-tilt-speed="700"
 										data-tilt-max="24"><span>Connect wallet</span></button>
 								</li> -->
+								<script>
+									function z(){
+									alert('May 3 is the Date');}
+								</script>
 
 								<div class="dashboard_log my-2">
 									<div class="d-flex align-items-center">
@@ -145,7 +149,7 @@
 												<li class="crypto" style="border-radius: 30px 0px 0px 30px;"><span
 														id="bal">0.00 BNB</span><img class='pvps' src="/img/bnb.png"
 														height="30" alt="bnb"></li>
-												<li class="usd"><a  id="walletbutton" href="#"><span>Connect</span></a>
+												<li class="usd"><a  id="w" href="#" onclick="z();"><span>Connect</span></a>
 												</li>
 											</ul>
 										</div>
@@ -164,6 +168,7 @@
 	================================================== -->
 
 	<div class="section full-height-x height-auto-lg hide-over background-light-blue" id="ido">
+		
 		<div class="hero-center-wrap relative-on-lg">
 			<div class="container">
 				<div class="row">
@@ -187,8 +192,9 @@
 							
 						</div>
 						<div class="col-md-12 mb-1 ">
+							
 						
-						<div class="countdown gradient-ver">
+						<!-- <div class="countdown gradient-ver">
 							<div class="section">
 								<ul>
 									<li><span id="days"></span><p>days</p></li>
@@ -197,31 +203,59 @@
 									<li><span id="seconds"></span><p>seconds</p></li>
 								</ul>
 							</div>
-						</div>
+						</div> -->
+						
 						</div>
 
 
 						<div class="col-md-12  mb-1 ">
-							<p><span class="font-big-color"><i class="fa fa-clock-o"></i> 48 Hours Token Sale </span></p>
+							<p><span class="font-big-color"><i class="fa fa-clock-o"></i> Countdown to PreSales </span></p>
 						</div>
-						<div style="width: 8px;"></div>
+
+						<div class="">
+							<p>
+									<span class="back-color " id="days"></span>
+									<span class="back-color " id="hours"></span>
+									<span class="back-color " id="minutes"></span>
+									<span class="back-color " id="seconds"></span>
+								</p>
+							</div>
+						<!-- <div class="countdown gradient-ver">
+							<div class="section">
+								<ul>
+									<li><span id="days"></span><p>days</p></li>
+									<li><span id="hours"></span><p>hours</p></li>
+									<li><span id="minutes"></span><p>minutes</p></li>
+									<li><span id="seconds"></span><p>seconds</p></li>
+								</ul>
+							</div>
+						</div> -->
 						
 					</div>
+					
 					<div class=" col-lg-6  wow fadeInRightBig" data-wow-delay="0.3s" data-wow-duration="0.5s">
 						<div class="table-sale background-white table-shadow">
-
-						
+							
 							<div class="btn-group">
-								<button class="btn " onclick="opentab(event, 'IDO')" id="defaultOpen">IDO</button>
-								<button class="btn " onclick="opentab(event, 'Airdrops')">Airdrops</button>
+								<button class="btn btn-primary js-tilt " onclick="opentab(event, 'IDO')" id="defaultOpen">IDO</button>
+								<button class="btn btn-primary js-tilt " onclick="opentab(event, 'Airdrops')">🎁 Airdrops</button>
 
 							</div>
 							<div class="table-line mt-2 mb-4"></div>
 							<div id="IDO" class="tabcontent">
 								<img src="/img/buyoxi.png" height="100" alt="Buy">
 								<p><span class="back-color ">1 BNB = 15,000,000 OXI* </span></p>
-								<div style="height: 8px;"></div>
-								<p>*Private sale</p>
+								<div style="height: 15px;"></div>
+							
+									<div class="">
+									<p>
+											<span class="back-color " id="idays"></span>
+											<span class="back-color " id="ihours"></span>
+											<span class="back-color " id="iminutes"></span>
+											<span class="back-color " id="iseconds"></span>
+										</p>
+									</div>
+								
 								<div class="table-line mt-2 mb-4"></div>
 								<div style="height: 15px ;"></div>
 
@@ -258,15 +292,16 @@
 
 								<div style="height: 24px;"></div>
 
-								<a href="#" class="btn btn-primary js-tilt" id="buy-button"><i class="fa fa-link"></i>
-									Connect Wallet</a>
+								<button onclick="z()" class="btn btn-primary js-tilt" id="conne"><i class="fa fa-link"></i>
+									Connect Wallet</button>
+									
 							</div>
 
 							<div id="Airdrops" class="tabcontent">
 								<img src="/img/dropsoxi.png" height="100" alt="Buy">
 								<p><span class="back-color ">Claim Airdrops </span></p>
 								<div style="height: 8px;"></div>
-								<p>*From May 3 , 2022</p>
+								<p>*Coming Soon</p>
 								<div class="table-line mt-2 mb-4"></div>
 								<div style="height: 15px ;"></div>
 								<h6 class = 'bil'>New Members, Register and Complete tasks<br/>
