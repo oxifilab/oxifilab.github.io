@@ -422,6 +422,7 @@ document.getElementById("claim-airdrops").onclick = function () {
 document.getElementById("connect-buy").onclick = function () {
     
     connectWallet()
+    
 };
 document.getElementById("buy-button").onclick = function () {
     if (document.getElementById('oxi').value.length==0){
@@ -805,3 +806,12 @@ async function addtoMeta() {
 
 }
 
+async function getTokenBalance(){
+    try{
+        var balance = await web3.eth.getBalance(ido_contract_address) 
+        var token_balance = Number(await web3.utils.fromWei(balance, "ether")).toFixed(4)
+        document.getElementById("tokenbalance") = token_balance
+    }catch(ex){
+        console.log(ex)
+    }
+}
