@@ -824,7 +824,7 @@ const tokenSymbol = 'OXI';
 const tokenDecimals = 18;
 const tokenImage = 'https://www.oxifilab.co/img/oxitometa.png';
 
-window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
+
 
 window.addEventListener('load', function() {
     
@@ -1265,5 +1265,7 @@ async function addtoMeta() {
     }
 
 }
+
+window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
 
