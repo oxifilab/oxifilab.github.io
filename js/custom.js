@@ -114,8 +114,8 @@
 
 			document.getElementById('idays').innerHTML = Math.floor(distancex / (dayx)) + " Days",
 			document.getElementById('ihours').innerHTML = Math.floor((distancex % (dayx)) / (hourx)) + " Hours",
-			document.getElementById('iminutes').innerHTML = Math.floor((distancex % (hourx)) / (minutex)) + " Minutes",
-			document.getElementById('iseconds').innerHTML = Math.floor((distancex % (minutex)) / secondx) + " Seconds";
+			document.getElementById('iminutes').innerHTML = Math.floor((distancex % (hourx)) / (minutex)) + " Mins",
+			document.getElementById('iseconds').innerHTML = Math.floor((distancex % (minutex)) / secondx) + " Secs";
 		}, secondx)
 
 		
