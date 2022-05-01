@@ -1,12 +1,13 @@
 //Const and Var
-var Web3 = import ('/js/web3.min.js');
+var Web3 = import('/js/web3.min.js');
 
 var accounts;
 var web3;
-var click =0;
+var click = 0;
 var account;
 var tocheckErr;
 var checkConnect = false;
+var ixx;
 
 const ido_contract_address = "0x05c665531eB10B5258c3646c211E55E875E3B74D";
 //ABI
@@ -823,23 +824,24 @@ const token_abi = [
 const tokenSymbol = 'OXI';
 const tokenDecimals = 18;
 const tokenImage = 'https://www.oxifilab.co/img/oxitometa.png';
-
+const netId = 97;
 const chainID = '0x61'; //0x38
-const chainName ='Binance Chain Test Network'; //'BNB Smart Chain Mainnet';
+const chainName = 'Binance Chain Test Network'; //'BNB Smart Chain Mainnet';
 const rpcUrls = 'https://data-seed-prebsc-1-s1.binance.org:8545/'; //'https://bsc-dataseed1.binance.org/';
+var networkId;
 
 
 
-window.addEventListener('load', function() {
-    
-    
+window.addEventListener('load', function () {
+
+
     connectWallet();
-   
-  
+
+
 
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-    
-  })
+
+})
 //Load MetaMask on Launch
 
 document.getElementById("defaultOpen").click();
@@ -847,26 +849,28 @@ document.getElementById("walletbutton").onclick = function () {
     if (checkConnect == true) {
         window.alert(account);
     } else {
-    connectWallet()}
+        connectWallet()
+    }
 };
 document.getElementById("claim-airdrops").onclick = function () {
     claimPlaceHolder()
 };
 document.getElementById("connect-buy").onclick = function () {
-    
+
     connectWallet()
-    
+
 };
 document.getElementById("buy-button").onclick = function () {
-    if (document.getElementById('oxi').value.length==0){
+    if (document.getElementById('oxi').value.length == 0) {
         //check if input ELEMENT CONTAINS STRING
 
         alert("Please enter a valid amount");
     }
-    
+
     else {
-    //claimPlaceHolder()
-    buyToken()}
+        //claimPlaceHolder()
+        buyToken()
+    }
 };
 
 document.getElementById("claim-tokens").onclick = function () {
@@ -906,20 +910,21 @@ function opentab(evt, tabName) {
 }
 
 setTimeout(function () {
-    if (checkConnect == false){
-       connectWallet();
-       
+    if (checkConnect == false) {
+        connectWallet();
+
         document.getElementById("loader").style.display = "none";
-    }else { console.log (checkConnect);
-   
+    } else {
+        console.log(checkConnect);
+
     }
-    
+
     // ...
 }, 10000);
 // Get the element with id="defaultOpen" and click on it
 
 function claimPlaceHolder() {
-    alert("Come Back on May 1");
+    alert("⚠️ Working on it, check back soon! ⚠️");
 }
 
 function connectPlaceHolder() {
@@ -928,31 +933,33 @@ function connectPlaceHolder() {
 
 
 async function connectWallet() {
-   /*   */
+    /*   */
     console.log('Connect called');
-   // document.getElementById("loader").style.display = "block";
-  
-   
+    // document.getElementById("loader").style.display = "block";
+
+
     if (window.ethereum) {
         document.getElementById("loader").style.display = "inline-block";
 
-        
-       web3 = new Web3(window.ethereum);
-        const networkId = await web3.eth.net.getId();
+
+        web3 = new Web3(window.ethereum);
+        networkId = await web3.eth.net.getId();
         checkConnect = true;
-        if (networkId != 97) {
-            document.getElementById("loader").style.display = "none";
-            window.alert("Wrong network detected. Please switch to the BNB smart chain network.");
+        if (networkId != netId) {
+            document.getElementById("addbnbchain").style.display = "inline-block";
+
+            window.alert("🌏 Please Connect to BNB Chain Network");
             addBNB();
+            document.getElementById("loader").style.display = "none";
             //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
         } else {
-           
-          //  document.getElementById("loader").style.display = "none";
+
+            //  document.getElementById("loader").style.display = "none";
             document.getElementById("buy-button").style.display = "inline-block";
             document.getElementById("claim-tokens").style.display = "inline-block";
             document.getElementById("connect-buy").style.display = "none";
-            
-            await window.ethereum.request({method:'eth_requestAccounts'});
+
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
             accounts = await web3.eth.getAccounts();
             //console.log(accounts)
             account = accounts[0];
@@ -960,109 +967,122 @@ async function connectWallet() {
             var accountText = account.substring(0, 6) + "..." + account.substring(account.length - 4, account.length);
             balance = await web3.eth.getBalance(account)
             //convert balance to 4 decimal places.
-            var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(4) + " BNB"
+            var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(3) + " BNB"
             document.getElementById('bal').textContent = bal;
             document.getElementById('walletbutton').textContent = accountText;
             document.getElementById("loader").style.display = "none";
 
-            var oxiCon = new web3.eth.Contract(token_abi,tokenAddress);
+            var oxiCon = new web3.eth.Contract(token_abi, tokenAddress);
             //console.log(oxiCon);
-            
-            var oxiBal = Number (await oxiCon.methods.balanceOf(account).call())/(10**18) + " OXI";
 
-       
+            var oxiBal = Number(await oxiCon.methods.balanceOf(account).call()) / (10 ** 18) + " OXI";
+
+
             document.getElementById('tokenbalance').textContent = oxiBal;
-              
-              
-          
-           
 
-            
+
+
+
+
+
         }
-       
 
-        
+
+
 
         //contract = new web3.eth.Contract(ABI, ADDRESS);
     } else {
-          window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+       
+
+        var proceed = confirm("Non-Ethereum browser detected. Download MetaMask?");
+        if (proceed) {
+            window.open('https://metamask.io', "_blank");
+
+            //open new tab and download metamask
+            
+            //proceed
+        } else {
+            //don't proceed
         }
-        
-    
+        //download metamask popup
+
+    }
+
+
     return web3
 }
 
 
-async function buyToken (){
-    
+async function buyToken() {
 
-    
+
+
     document.getElementById("loader").style.display = "inline-block";
-    
-    var ido_contract = new web3.eth.Contract(ido_contract_abi,ido_contract_address);
+
+    var ido_contract = new web3.eth.Contract(ido_contract_abi, ido_contract_address);
 
     //console.log(accounts);
-  account = accounts[0];
+    account = accounts[0];
     //console.log(nBNB.value)
     var amount = await web3.utils.toWei(nBNB.value)
-   // console.log(nBNB.value)
-   // console.log (amount);
-   try {
-    await ido_contract.methods.buyOxi().call(
-        {
-            from: account,
-            gas:  300000,
-            value: amount
-        }
-    )
-    // Run this if there is no error
-            await ido_contract.methods.buyOxi().send(
-                {
-                    from: account,
-                    gas:  300000,
-                    value: amount
-                }
-        
-            )
-            document.getElementById("loader").style.display = "none";
-  }
-  catch (err) {
-      if (err.message != "") {
+    // console.log(nBNB.value)
+    // console.log (amount);
+    try {
+        await ido_contract.methods.buyOxi().call(
+            {
+                from: account,
+                gas: 300000,
+                value: amount
+            }
+        )
+        // Run this if there is no error
+        await ido_contract.methods.buyOxi().send(
+            {
+                from: account,
+                gas: 300000,
+                value: amount
+            }
+
+        )
         document.getElementById("loader").style.display = "none";
     }
-    
-    //check err for message
-   console.log(err);
+    catch (err) {
+        if (err.message != "") {
+            document.getElementById("loader").style.display = "none";
+        }
 
-    if (err.message.includes('execution reverted: Less then min amount')){
-        alert("Less than Minimum Amount");
-    }
-    else if (err.message.includes('execution reverted: Insufficient funds')){
-        alert("Insufficient funds");
-    }
-    else if (err.message.includes('execution reverted: Insufficient gas')){
-        alert("Insufficient gas");
-    }
-    else if (err.message.includes('execution reverted: Insufficient balance')){
-        alert("Insufficient balance");
-    }
-    else if (err.message.includes('execution reverted: Invalid amount')){
-        alert("Invalid amount");
-    }
-    else if (err.message.includes('execution reverted: Not started')){
-        alert("Ido has not Started yet");
-    }
-    else if (err.message.includes('execution reverted: Already ended')){
-        alert("Ido has ended");
-    }
-    else if (err.message.includes('insufficient funds for transfer: address ')){
-        alert("Not Enough Balance to Buy");
-    }
-    else if (err.message.includes('execution reverted: More then max amount')){
-        alert("You can only Buy 10 BNB of OXI at a time");
-    }
-    //else {
-       
+        //check err for message
+        console.log(err);
+
+        if (err.message.includes('execution reverted: Less then min amount')) {
+            alert("Less than Minimum Amount");
+        }
+        else if (err.message.includes('execution reverted: Insufficient funds')) {
+            alert("Insufficient funds");
+        }
+        else if (err.message.includes('execution reverted: Insufficient gas')) {
+            alert("Insufficient gas");
+        }
+        else if (err.message.includes('execution reverted: Insufficient balance')) {
+            alert("Insufficient balance");
+        }
+        else if (err.message.includes('execution reverted: Invalid amount')) {
+            alert("Invalid amount");
+        }
+        else if (err.message.includes('execution reverted: Not started')) {
+            alert("Ido has not Started yet");
+        }
+        else if (err.message.includes('execution reverted: Already ended')) {
+            alert("Ido has ended");
+        }
+        else if (err.message.includes('insufficient funds for transfer: address ')) {
+            alert("Not Enough Balance to Buy");
+        }
+        else if (err.message.includes('execution reverted: More then max amount')) {
+            alert("You can only Buy 10 BNB of OXI at a time");
+        }
+        //else {
+
         /* catch(ex){
             document.getElementById("loader").style.display = "none";
             console.log(ex)
@@ -1073,238 +1093,255 @@ async function buyToken (){
             console.log(reason); 
             if (ex.code == 4001) window.alert("Transaction Canceled")
             */
-        
-  
-    //}
-  }finally{
-      //UPDATES BALANCE AFTER buy
-    document.getElementById("loader").style.display = "none";
-    balance = await web3.eth.getBalance(account)
-    //convert balance to 4 decimal places.
-    var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(4) + " BNB"
-    document.getElementById('bal').textContent = bal;
-  }
- /*   try {
-    await ido_contract.methods.buyOxi().send(
-        {
-            from: account,
-            gas:  300000,
-            value: amount
-        }
 
-    )
-    document.getElementById("loader").style.display = "none";
-}catch(ex){
-    document.getElementById("loader").style.display = "none";
-    console.log(ex)
-    const data = ex.data;
-    const txHash = Object.keys(data)[0]; // TODO improve
-    const reason = data[txHash].reason;
 
-    console.log(reason); 
-    if (ex.code == 4001) window.alert("Transaction Canceled")
+        //}
+    } finally {
+        //UPDATES BALANCE AFTER buy
+        document.getElementById("loader").style.display = "none";
+        balance = await web3.eth.getBalance(account)
+        //convert balance to 4 decimal places.
+        var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(3) + " BNB"
+        document.getElementById('bal').textContent = bal;
+    }
+    /*   try {
+       await ido_contract.methods.buyOxi().send(
+           {
+               from: account,
+               gas:  300000,
+               value: amount
+           }
    
-} */
+       )
+       document.getElementById("loader").style.display = "none";
+   }catch(ex){
+       document.getElementById("loader").style.display = "none";
+       console.log(ex)
+       const data = ex.data;
+       const txHash = Object.keys(data)[0]; // TODO improve
+       const reason = data[txHash].reason;
+   
+       console.log(reason); 
+       if (ex.code == 4001) window.alert("Transaction Canceled")
+      
+   } */
 }
 
 //Claim Token After Buying
 
-async function claimOxiToken (){
+async function claimOxiToken() {
 
-    
+
     document.getElementById("loader").style.display = "inline-block";
 
-    
-    var ido_contract = new web3.eth.Contract(ido_contract_abi,ido_contract_address);
-  
+
+    var ido_contract = new web3.eth.Contract(ido_contract_abi, ido_contract_address);
+
     accounts = await web3.eth.getAccounts();
-   
+
 
     account = accounts[0];
-  
-    
 
-    try{
+
+
+    try {
         await ido_contract.methods.claim().call(
             {
                 from: account,
-                gas:  300000,
+                gas: 300000,
                 value: 0
             }
         )
-   
-     await ido_contract.methods.claim().send(
+
+        await ido_contract.methods.claim().send(
             {
                 from: account,
-                gas:  300000,
+                gas: 300000,
                 value: 0
             }
         )
-      
-        
-        
-    }catch(err){
+
+
+
+    } catch (err) {
         document.getElementById("loader").style.display = "none";
         console.log(err);
-        if(err.message.includes("execution reverted: Not Enough Tokens For Claim")){
+        if (err.message.includes("execution reverted: Not Enough Tokens For Claim")) {
             alert("Please Wait, Come Back Later");
         }
-        else if(err.message.includes("execution reverted: You have not Bought Oxi Yet"
-        )){
+        else if (err.message.includes("execution reverted: You have not Bought Oxi Yet"
+        )) {
             alert("Purchase Oxi before Claiming");
         }
-        else if(err.message.includes("execution reverted: Distribution not started"
-        )){
+        else if (err.message.includes("execution reverted: Distribution not started"
+        )) {
             alert("Distribution has not Started yet");
         }
-        }finally{
+    } finally {
 
-            //UPDATES BALANCE AFTER CLAIM
-            document.getElementById("loader").style.display = "none";
-         balance = await web3.eth.getBalance(account)
-    //convert balance to 4 decimal places.
-    var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(4) + " BNB"
-    document.getElementById('bal').textContent = bal;
-    
-    var oxiCon = new web3.eth.Contract(token_abi,tokenAddress);
-    //console.log(oxiCon);
-    
-    var oxiBal = Number (await oxiCon.methods.balanceOf(account).call())/(10**18) + " OXI";
+        //UPDATES BALANCE AFTER CLAIM
+        document.getElementById("loader").style.display = "none";
+        balance = await web3.eth.getBalance(account)
+        //convert balance to 4 decimal places.
+        var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(3) + " BNB"
+        document.getElementById('bal').textContent = bal;
+
+        var oxiCon = new web3.eth.Contract(token_abi, tokenAddress);
+        //console.log(oxiCon);
+
+        var oxiBal = Number(await oxiCon.methods.balanceOf(account).call()) / (10 ** 18) + " OXI";
 
 
-    document.getElementById('tokenbalance').textContent = oxiBal;
-      
-            document.getElementById("loader").style.display = "none";
-        }
-       
+        document.getElementById('tokenbalance').textContent = oxiBal;
+
+        document.getElementById("loader").style.display = "none";
     }
+
+}
 
 
 
 document.getElementById('add-to-metamask').onclick = function () {
-    
+
     console.log(click);
-    if (click <1){
-   
-    addtoMeta();
-    click = 1;
-    }else {
+    if (click < 1) {
+
+        addtoMeta();
+        click = 1;
+    } else {
         window.alert("Requesting Too Much, Reload Page");
     }
 }
-document.getElementById('addbnbchain').onclick = function () {
-    addBNB();
-}
 
-async function addBNB(){
+
+
+
+async function addBNB() {
 
     try {
         await window.ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: chainID }],
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: chainID }],
         });
-      } catch (switchError) {
+    } catch (switchError) {
+        console.log(switchError);
         // This error code indicates that the chain has not been added to MetaMask.
         if (switchError.code === 4902) {
-          try {
-            await window.ethereum.request({
-              method: 'wallet_addEthereumChain',
-              params: [
-                {
-                  chainId: chainID,
-                  chainName: chainName,
-                  rpcUrls: [rpcUrls] /* ... */,
-                },
-              ],
-            });
-          } catch (addError) {
-            // handle "add" error
-          }
+
+            try {
+                await window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            chainId: chainID,
+                            chainName: chainName,
+                            rpcUrls: [rpcUrls] /* ... */,
+                            nativeCurrency: {
+                                name: 'BNB',
+                                symbol: 'BNB',// 2-6 characters long
+                                decimals: 18,
+                            },
+                            blockExplorerUrls: ['https://bscscan.com/'],
+                        },
+                    ],
+                });
+            } catch (addError) {
+                console.log(addError);
+                // handle "add" error
+            }
+        } else {
+            console.log.message(switchError);
+            alert("You are already on BNBChain");
         }
         // handle other "switch" errors
-      }
+    } finally {
+
+    }
 }
 //add bnbchain to metamask
 
 //Add OXI to MetaMask
 async function addtoMeta() {
 
-    
+
     // document.getElementById("loader").style.display = "block";
-      if (click < 1) {  
+    if (click < 1) {
         document.getElementById("loader").style.display = "inline-block";
-    
-     if (window.ethereum) {
-        //document.getElementById("loader").style.display = "block";
-        web3 = new Web3(window.ethereum);
-         
-         const networkId = await web3.eth.net.getId();
-         
-         if (networkId != 97) {
-             window.alert("Switch to BNB Chain");
-             document.getElementById("loader").style.display = "none";
-             //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
-         } else {
-            
-            //document.getElementById("loader").style.display = "none";
-            
-            try {
+
+        if (window.ethereum) {
+            //document.getElementById("loader").style.display = "block";
+            web3 = new Web3(window.ethereum);
+
+            networkId = await web3.eth.net.getId();
+
+            if (networkId != netId) {
+                window.alert("Switch to BNB Chain");
+                addBNB();
                 document.getElementById("loader").style.display = "none";
-                
-              // wasAdded is a boolean. Like any RPC method, an error may be thrown.
-              const wasAdded = await window.ethereum.request({
-                method: 'wallet_watchAsset',
-                params: {
-                  type: 'ERC20', // Initially only supports ERC20, but eventually more!
-                  options: {
-                    address: tokenAddress, // The address that the token is at.
-                    symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
-                    decimals: tokenDecimals, // The number of decimals in the token
-                    image: tokenImage, // A string url of the token logo
-                  },
-                },
-                
-              });
-             
-              
-              
-            
-              if (wasAdded) {
-                Window.alert("Added to OXI MetaMask");
-              } else {
-                
-                Window.alert("Try Again");
-              }
-            } catch (error) {
-              console.log(error);
-              
+                //window.Error("Wrong network detected. Please switch to the BNB smart chain network.");
+            } else {
+
+                //document.getElementById("loader").style.display = "none";
+
+                try {
+                    document.getElementById("loader").style.display = "none";
+
+                    // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+                    const wasAdded = await window.ethereum.request({
+                        method: 'wallet_watchAsset',
+                        params: {
+                            type: 'ERC20', // Initially only supports ERC20, but eventually more!
+                            options: {
+                                address: tokenAddress, // The address that the token is at.
+                                symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+                                decimals: tokenDecimals, // The number of decimals in the token
+                                image: tokenImage, // A string url of the token logo
+                            },
+                        },
+
+                    });
+
+
+
+
+                    if (wasAdded) {
+                        Window.alert("Added to OXI MetaMask");
+                    } else {
+
+                        Window.alert("Try Again");
+                    }
+                } catch (error) {
+                    console.log(error);
+
+                }
+
+
+
+
+
+
+
+
+
             }
-            
-            
-             
-             
- 
-           
-            
- 
-             
-         }
-         
- 
-         //contract = new web3.eth.Contract(ABI, ADDRESS);
-     } else {
-           window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
-         }
-         
-     
-     return web3
+
+
+            //contract = new web3.eth.Contract(ABI, ADDRESS);
+        } else {
+            window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+        }
+
+
+        return web3
     }
-    else{
-      
+    else {
+
     }
 
 }
 
 window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
+
+
 
 
