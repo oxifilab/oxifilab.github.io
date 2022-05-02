@@ -830,6 +830,7 @@ const chainID = '0x61'; //0x38
 const chainName = 'Binance Chain Test Network'; //'BNB Smart Chain Mainnet';
 const rpcUrls = 'https://data-seed-prebsc-1-s1.binance.org:8545/'; //'https://bsc-dataseed1.binance.org/';
 var networkId;
+var  maxInvBNB;
 
 
 
@@ -980,9 +981,12 @@ async function connectWallet() {
             var oxiIdoCon = new web3.eth.Contract(ido_contract_abi, ido_contract_address);
             //console.log(oxiCon);
 
+            var userInfox = await oxiIdoCon.methods.userInfo(account).call()
+            maxInvBNB = 10 - (userInfox['totalInvestedETH']/(10**18));
+            console.log(maxInvBNB);
             var oxiBal = Number(await oxiCon.methods.balanceOf(account).call()) / (10 ** 18) + " OXI";
             var oxiav = await oxiIdoCon.methods.tokensForDistribution().call() / (10 ** 18) ;
-           var oxileft = 2250000000 - oxiav + " / 2250000000 OXI";
+           var oxileft = (2250000000 - oxiav) + " / 2250000000 OXI";
            console.log(oxileft);
 
            var oxitopercent = (oxiav / 2250000000) * 100;
@@ -993,7 +997,7 @@ async function connectWallet() {
             var idoBal = Number(await web3.utils.fromWei(idoBalance, "ether")).toFixed(1) + " / 150 BNB"
             document.getElementById('idobalance').textContent = idoBal;
             document.getElementById('tokenForDist').textContent = oxileft;
-
+            document.getElementById('amtpb').textContent ="Amount of Purchase Left for you is " + maxInvBNB + " BNB";
 
 
 
@@ -1068,9 +1072,10 @@ async function buyToken() {
 
         //check err for message
         console.log(err);
+       
 
         if (err.message.includes('execution reverted: Less then min amount')) {
-            alert("Less than Minimum Amount");
+            alert("Minimum purchase is 1 BNB");
         }
         else if (err.message.includes('execution reverted: Insufficient funds')) {
             alert("Insufficient funds");
@@ -1094,7 +1099,7 @@ async function buyToken() {
             alert("Not Enough Balance to Buy");
         }
         else if (err.message.includes('execution reverted: More then max amount')) {
-            alert("You can only Buy 10 BNB of OXI in PreSales");
+            alert("Maximum Buy Order = 10 BNB" +"\n You can buy " + maxInvBNB + " BNB");
         }
         else if (err.message.includes('execution reverted: Overfilled')) {
             alert("No More Oxi for Presales / Check Back for Public Sales");
@@ -1124,6 +1129,10 @@ async function buyToken() {
         //convert balance to 4 decimal places.
         var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(3) + " BNB"
         document.getElementById('bal').textContent = bal;
+        var oxiIdoCon = new web3.eth.Contract(ido_contract_abi, ido_contract_address);    
+        var userInfox = await oxiIdoCon.methods.userInfo(account).call()
+        maxInvBNB = 10 - (userInfox['totalInvestedETH']/(10**18));
+        console.log(maxInvBNB);
     }
     /*   try {
        await ido_contract.methods.buy().send(
