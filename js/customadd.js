@@ -977,16 +977,22 @@ async function connectWallet() {
             document.getElementById("loader").style.display = "none";
 
             var oxiCon = new web3.eth.Contract(token_abi, tokenAddress);
+            var oxiIdoCon = new web3.eth.Contract(ido_contract_abi, ido_contract_address);
             //console.log(oxiCon);
 
             var oxiBal = Number(await oxiCon.methods.balanceOf(account).call()) / (10 ** 18) + " OXI";
+            var oxiav = await oxiIdoCon.methods.tokensForDistribution().call() / (10 ** 18) ;
+           var oxileft = 2250000000 - oxiav + " / 2250000000 OXI";
+           console.log(oxileft);
 
-
+           var oxitopercent = (oxiav / 2250000000) * 100;
+             
+            document.getElementById('oxi-completed').textContent = "Completion (%) = " + oxitopercent.toFixed(2) + "% / 100%";
             document.getElementById('tokenbalance').textContent = oxiBal;
             idoBalance = await web3.eth.getBalance(idowallet)
-            var idoBal = Number(await web3.utils.fromWei(idoBalance, "ether")).toFixed(1) + " / 100 BNB"
+            var idoBal = Number(await web3.utils.fromWei(idoBalance, "ether")).toFixed(1) + " / 150 BNB"
             document.getElementById('idobalance').textContent = idoBal;
-
+            document.getElementById('tokenForDist').textContent = oxileft;
 
 
 
@@ -1053,6 +1059,7 @@ async function buyToken() {
 
         )
         document.getElementById("loader").style.display = "none";
+        alert("Buy Order Fufilled");
     }
     catch (err) {
         if (err.message != "") {
@@ -1175,6 +1182,8 @@ async function claimOxiToken() {
             }
         )
 
+        alert("Token Claimed Successfully");
+
 
 
     } catch (err) {
@@ -1209,6 +1218,7 @@ async function claimOxiToken() {
         document.getElementById('tokenbalance').textContent = oxiBal;
 
         document.getElementById("loader").style.display = "none";
+        
     }
 
 }
