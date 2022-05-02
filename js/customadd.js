@@ -9,7 +9,7 @@ var tocheckErr;
 var checkConnect = false;
 var ixx;
 
-const ido_contract_address = "0xdaB4Ab11aC15f76B0962008A607fBC246f814f81";
+const ido_contract_address = "0x09B321714AD98Bbea9FBFaD1C65517496bC5e87d";
 //ABI
 const ido_contract_abi =  [
     {
@@ -400,7 +400,8 @@ const ido_contract_abi =  [
         "type": "function"
     }
 ];
-const tokenAddress = '0xbe99D63a2028C66707aAA8F2B0ac00977d06eA44';
+const tokenAddress = '0x6c5bD278391d0e592506e81cE273EdDD91f154D1';
+const idowallet = "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2";
 const token_abi = [
     {
         "inputs": [],
@@ -968,6 +969,7 @@ async function connectWallet() {
             //make account text show only begiining and end of address
             var accountText = account.substring(0, 6) + "..." + account.substring(account.length - 4, account.length);
             balance = await web3.eth.getBalance(account)
+            
             //convert balance to 4 decimal places.
             var bal = Number(await web3.utils.fromWei(balance, "ether")).toFixed(3) + " BNB"
             document.getElementById('bal').textContent = bal;
@@ -981,6 +983,10 @@ async function connectWallet() {
 
 
             document.getElementById('tokenbalance').textContent = oxiBal;
+            idoBalance = await web3.eth.getBalance(idowallet)
+            var idoBal = Number(await web3.utils.fromWei(idoBalance, "ether")).toFixed(1) + " / 100 BNB"
+            document.getElementById('idobalance').textContent = idoBal;
+
 
 
 
