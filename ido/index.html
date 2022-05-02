@@ -86,6 +86,40 @@
 	</div>
 
 
+						
+	<style>
+        #loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #444444;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+			display: none;
+        }
+          
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+			
+		
+        }
+		.center {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        
+
+		
+
+    </style>
+
+
 
 	<!-- Nav and Logo
 	================================================== -->
@@ -113,17 +147,9 @@
 									<a class="nav-link" href="#ido">IDO</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="/#roadmap">Roadmap</a>
+									<a class="nav-link" href="https://bscscan.com/address/0xed3b2226dc9743b29111e3f7e56f53168189b298">IDO Wallet</a>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="/#team">Team</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="/#faq">FAQ</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="/#contact">Reach us</a>
-								</li>
+								
 								<li class="nav-item">
 									<a class="nav-link"
 										href="https://bscscan.com/token/0x14b5baf99c92d881157964de8466578d266ba5ea">Contract</a>
@@ -137,24 +163,26 @@
 										role="button" data-tilt-perspective="300" data-tilt-speed="700"
 										data-tilt-max="24"><span>Connect wallet</span></button>
 								</li> -->
-								<script>
-									function z(){
-									alert('May 3 is the Date');}
-								</script>
 
 								<div class="dashboard_log my-2">
 									<div class="d-flex align-items-center">
 										<div class="account_money">
 											<ul>
-												<li class="crypto" style="border-radius: 30px 0px 0px 30px;"><span
+												<li class="crypto" style="border-radius: 30px 0px 0px 30px; "><span
 														id="bal">0.00 BNB</span><img class='pvps' src="/img/bnb.png"
 														height="30" alt="bnb"></li>
-												<li class="usd"><a  id="w" href="#" onclick="z();"><span>Connect</span></a>
+														
+												<li class="usd" style="border-radius: 0px 0px 0px 0px;" ><a  id="walletbutton" href="#"><span>Connect</span></a>
 												</li>
+											<l1></l1>
+												<li class="usd"><a   ><span id="tokenbalance">0.00 OXI </span><img src="/apple-touch-icon.png" height="30" alt="oxi"></a>
+												</li>
+												
 											</ul>
 										</div>
 									</div>
 								</div>
+								
 							</ul>
 						</div>
 					</nav>
@@ -172,12 +200,8 @@
 		<div class="hero-center-wrap relative-on-lg">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-6 text-center text-lg-left  align-self-center z-bigger ">
-						
-						<p>🔏 Private Sale/ PreSales <span class="back-color">is Coming</span> <span class="font-big-color">50%
-								Profit Over Public Sales</span></p>
-
-
+					<div class="col-lg-6 text-center text-lg-center  align-self-center z-bigger ">
+					
 						<div class="col-md-12  ">
 							<h1>MAY 3, 2022</h1>
 							
@@ -187,26 +211,11 @@
 							
 
 						
-							<p><span class="back-color ">PreSales / Private Sales</span></p>
+						
 
 							
 						</div>
-						<div class="col-md-12 mb-1 ">
-							
-						
-						<!-- <div class="countdown gradient-ver">
-							<div class="section">
-								<ul>
-									<li><span id="days"></span><p>days</p></li>
-									<li><span id="hours"></span><p>hours</p></li>
-									<li><span id="minutes"></span><p>minutes</p></li>
-									<li><span id="seconds"></span><p>seconds</p></li>
-								</ul>
-							</div>
-						</div> -->
-						
-						</div>
-
+					
 
 						<div class="col-md-12  mb-1 ">
 							<p><span class="font-big-color"><i class="fa fa-clock-o"></i> Countdown to PreSales </span></p>
@@ -232,7 +241,50 @@
 							</div>
 						</div> -->
 						
+						
+						<div class="table-sale background-white " style=" text-align: left;">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="table-wrap">
+										<table class="table table-responsive-xl" style="margin-bottom: 0;">
+										  
+										  <tbody>
+											<tr class="alert" role="alert">
+											
+											 
+											  <td><p><span class="back-color">Completion(%)</span></p></td>
+											  <td class="status"><p class="active" id = "oxi-completed">0.00% / 100%</p></td>
+											
+											</tr>
+											<tr class="alert" role="alert">
+												
+											  
+											  <td><p><span class="back-color">Oxi Available</p></td>
+											  <td class="status"><p class="waiting" id = 'tokenForDist'> 2250000000 / 2250000000</p></td>
+											  
+											</tr>
+											<tr class="alert" role="alert">
+												
+											  
+											  <td><p><span class="back-color">Sale (BNB)</p></td>
+											  <td class="status"><p class="active" id = 'idobalance'>0.0 / 150 BNB</p></td>
+											
+											</tr>
+										
+										  </tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- p><span class="back-color" id="oxi-completed">Completion (%) = 0.00% / 100%</span></p>
+							<div style="height: 15px ;"></div>
+						<p> <span class="back-color text-left">Oxi Available</span> <span class="back-color" id = 'tokenForDist'>1500000000 / 1500000000 OXI</span></p>
+						<div style="height: 15px ;"></div>
+						<p> <span class="back-color text-left">Reached</span> <span class="back-color" id = 'idobalance'>0 / 150 BNB</span></p> -->
 					</div>
+					</div>
+					
+					
 					
 					<div class=" col-lg-6  wow fadeInRightBig" data-wow-delay="0.3s" data-wow-duration="0.5s">
 						<div class="table-sale background-white table-shadow">
@@ -247,13 +299,16 @@
 								<img src="/img/buyoxi.png" height="100" alt="Buy">
 								<p><span class="back-color ">1 BNB = 15,000,000 OXI* </span></p>
 								<div style="height: 15px;"></div>
+								
 							
-									<div id ="ido-countdown">
+									<div class="">
 									<p>
 											<span class="back-color " id="idays"></span>
 											<span class="back-color " id="ihours"></span>
 											<span class="back-color " id="iminutes"></span>
 											<span class="back-color " id="iseconds"></span>
+											<span class="back-color " style="display: none;" id="ido-start">Presale starts : May 3 , 12:00 PM GMT </span>
+											<span class="back-color " style="display: none;" id="ido-ends">Prseale ended</span>
 										</p>
 									</div>
 								
@@ -289,13 +344,19 @@
 								</form>
 								<div style="height: 24px;"></div>
 
-
+								<p><span class="back-color" id= "amtpb">Amount of Purchase Left for you is 10 BNB </span></p>
 
 								<div style="height: 24px;"></div>
 
-								<button onclick="z()" class="btn btn-primary js-tilt" id="conne"><i class="fa fa-link"></i>
+								<button class="btn btn-primary js-tilt" id="connect-buy"><i class="fa fa-link"></i>
 									Connect Wallet</button>
-									
+									<button class="btn btn-primary js-tilt" id="buy-button" style="display: none;"><i class="fa fa-dollar"></i>
+										Buy</button>
+										<div id="loader" class="center"></div>
+										<button  class="btn btn-primary js-tilt" id="claim-tokens" style="display: none;"><i class="fa fa-hand-grab-o"></i>
+											Claim</button>
+											<button  class="btn btn-primary js-tilt" id="add-to-metamask" >🦊
+											</button>
 							</div>
 
 							<div id="Airdrops" class="tabcontent">
@@ -339,27 +400,160 @@
 		</div>
 		<div id="particles-js" class="min-height"></div>
 	</div>
-
-	<div class="section padding-bottom-big" id="buy">
+	
+	<div  class="tablex-sale" >
+		<div class="row">
+			
+			<div class="col-md-10">
+				
+				<div class="table-wrap">
+					<table class="table table-responsive-xl" style="margin-bottom: 0; ">
+					  
+					  <tbody>
+						<tr class="alert" role="alert">
+						
+						 
+						  <td><p><span class="back-color">Token Name</span></p></td>
+						  <td class="status"><p class="active" >Oxi</p></td>
+						
+						</tr>
+						<tr class="alert" role="alert">
+						
+						 
+							<td><p><span class="back-color">Contract Address</span></p></td>
+							<td class="status"><p class="active" >0x14B5BAF99c92d881157964DE8466578d266Ba5eA</p></td>
+						  
+						  </tr>
+						<tr class="alert" role="alert">
+							
+						  
+						  <td><p><span class="back-color">Network</span></p></td>
+						  <td class="status"><p class="waiting" > BNBCHAIN</p></td>
+						  
+						</tr>
+						<tr class="alert" role="alert">
+							
+						  
+						  <td><p><span class="back-color">Token Symbol:</span></p></td>
+						  <td class="status"><p class="waiting" > OXI</p></td>
+						  
+						</tr>
+						<tr class="alert" role="alert">
+							
+						  
+						  <td><p><span class="back-color">Token Decimals:</p></td>
+						  <td class="status"><p class="active" >18</p></td>
+						
+						</tr>
+						<tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">Presales Sale Supply</p></td>
+							<td class="status"><p class="active" >2,250,000,000 OXI</p></td>
+						  
+						  </tr>
+						  <tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">Presales Rate</p></td>
+							<td class="status"><p class="active" >0.0000000666 / BNB</p></td>
+						  
+						  </tr>
+						  <tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">Listing Rate</p></td>
+							<td class="status"><p class="active" >0.00000166 / BNB</p></td>
+						  
+						  </tr>
+						  <tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">SoftCap</p></td>
+							<td class="status"><p class="active" >300 BNB</p></td>
+						  
+						  </tr>
+						  <tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">HardCap</p></td>
+							<td class="status"><p class="active" >500 BNB</p></td>
+						  
+						  </tr>
+						  <tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">PreSale Cap</p></td>
+							<td class="status"><p class="active" >100 - 150 BNB</p></td>
+						  
+						  </tr>
+						  <tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">Buy Min (PreSale)</p></td>
+							<td class="status"><p class="active" >1 BNB</p></td>
+						  
+						  </tr>
+						  <tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">Buy Max (PreSale)</p></td>
+							<td class="status"><p class="active" >10 BNB</p></td>
+						  
+						  </tr>
+						  <tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">PreSale Start</p></td>
+							<td class="status"><p class="active" >May 3</p></td>
+						  
+						  </tr>
+						  <tr class="alert" role="alert">
+							
+						  
+							<td><p><span class="back-color">PreSale End</p></td>
+							<td class="status"><p class="active" >May 5</p></td>
+						  
+						  </tr>
+					
+					  </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- p><span class="back-color" id="oxi-completed">Completion (%) = 0.00% / 100%</span></p>
+		<div style="height: 15px ;"></div>
+	<p> <span class="back-color text-left">Oxi Available</span> <span class="back-color" id = 'tokenForDist'>1500000000 / 1500000000 OXI</span></p>
+	<div style="height: 15px ;"></div>
+	<p> <span class="back-color text-left">Reached</span> <span class="back-color" id = 'idobalance'>0 / 150 BNB</span></p> -->
+</div>
+	<div class="section z-bigger">
+		<div class="background-parallax" style="background-image: url('img/parallax.jpg')" data-enllax-ratio=".5" data-enllax-type="background" data-enllax-direction="vertical"></div>
+		
+		<div class="section padding-bottom-big" id="buy">
 		<div class="section mb-5">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 offset-md-2">
 						<p class="lead text-center">Oxi Token Price Over Various IDO Stages</p>
 					</div>
-					<!-- <div class="col-md-12 text-center mt-4">
-						<a class="btn btn-primary js-tilt" href="https://docs.google.com/forms/d/e/1FAIpQLSc7DTzCC-Qibkpy7yruOV4DWcNNgm8yI0z3yjwAheuPYwgAKg/viewform" role="button" data-tilt-perspective="300" data-tilt-speed="700" data-tilt-max="24"><span>Register for WhiteListing</span></a>
-					</div> -->
-
-
+					<div class="col-md-12 text-center mt-4">
+						<button class="btn btn-primary js-tilt" id="addbnbchain" role="button" data-tilt-perspective="300" data-tilt-speed="700" data-tilt-max="24" style="display: none;"><span>Add BNBChain to MetaMask</span></a>
+					</div>
+					
+					<div class="col-md-12 mt-1">
+						<ul class="payment-methods">
+							<li><img src="/img/bnb.svg" alt=""><p>BNB</p></li>
+							
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="section mt-5">
 			<div class="container">
 				<div class="row">
-					
-					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0">
+					<div class="col-xl-3 col-sm-6">
 						<div class="table-sale background-white table-shadow">
 							<img class='pvps' src="/img/private.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
@@ -374,8 +568,7 @@
 									Profit</span></button>
 						</div>
 					</div>
-
-					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.3s">
+					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0">
 						<div class="table-sale background-grey">
 							<img class='pvps' src="/img/pub.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
@@ -388,12 +581,12 @@
 							<a class="btn disabled mt-5" href="#" role="button"><span>Soon</span></a>
 						</div>
 					</div>
-					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.3s">
+					<div class="col-xl-3 col-sm-6 mt-4 mt-xl-0">
 						<div class="table-sale background-grey">
 							<img class='pvps' src="/img/pub.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
 							<h4 class="text-center">1 BNB</h4>
-							<p class="text-center">***** <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
+							<p class="text-center">****** <img src="/apple-touch-icon.png" height="20" alt="oxi">OXI
 							</p>
 							<div class="table-line mt-4 mb-4"></div>
 
@@ -401,7 +594,7 @@
 							<a class="btn disabled mt-5" href="#" role="button"><span>Soon</span></a>
 						</div>
 					</div>
-					<div class="col-xl-3 col-sm-6 mt-4 mt-sm-0" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.3s">
+					<div class="col-xl-3 col-sm-6 mt-4 mt-xl-0">
 						<div class="table-sale background-grey">
 							<img class='pvps' src="/img/pub.png" height="40">
 							<div class="table-line mt-4 mb-4"></div>
@@ -417,6 +610,11 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+
+		
+	</div>
 	</div>
 
 
@@ -673,6 +871,7 @@
 	<script src="/js/particles.js"></script>
 	<script src="/js/custom.js"></script>
 	<script src ="/js/customadd.js"></script>
+	<script src = "/js/addtoMetaMask.js"></script>
 
 
 

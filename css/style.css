@@ -103,11 +103,13 @@ mark{
 	z-index: 10;
 }
 .account_money {
-    margin-right: 18px;
+    width: max-content;
 }
 @media only screen and (max-width: 767px) {
     .account_money {
-       
+        margin-right: 0px;
+		width: auto;
+		height: auto;
     }
 }
 .account_money ul li {
@@ -1106,7 +1108,64 @@ mark{
 	letter-spacing: 1px;
 	line-height: 20px;
 }
-
+.tablex-sale{
+	position: relative;
+	padding-left: 200px;
+	padding-top: 0px;
+	padding-bottom: 50px;
+	margin: 0 auto;
+	text-align: left;
+	border-radius: 10px;
+}
+.tablex-sale p{
+	color: rgb(0, 0, 0);
+	margin-bottom: 0;
+}
+.table-oxi p{
+	color: rgb(0, 0, 0);
+	margin-bottom: 0;
+}
+.tablex-sale.background-color p{
+	color: #fff;
+}
+.tablex-sale.future-price p{
+	color: #111;
+}
+.tablex-sale p span{
+	background-color: #999;
+	color: #fff;
+	border-radius: 15px;
+	padding: 6px 15px;
+	font-size: 15px;
+	font-weight: 500;
+}
+.tablex-sale .table-line{
+	position: relative;
+	width: 100%;
+	border-bottom: 1px solid #999;
+	opacity: 0.4;
+}
+.tablex-sale.background-color .table-line{
+	border-color: #fff;
+}
+.tablex-sale h4{
+	color: rgb(0, 0, 0);
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 25px;
+	line-height: 25px;
+}
+.tablex-sale.background-color h4{
+	color: #fff;
+}
+.tablex-sale .btn.disabled{
+	color: #fff;
+	background-color: #999;
+}
+.tablex-sale.future-price .btn.disabled{
+	color: #212121;
+	background-color: #f0f1f6;
+}
 .table-sale{
 	position: relative;
 	padding: 15px;
@@ -2064,6 +2123,9 @@ display: inline-block;
 }
 
 @media (max-width: 1199px) { 
+	.tablex-sale{
+		padding-left: 300px;
+	}
 	.hero-center-wrap h1{
 		font-size: 55px;
 	}
@@ -2097,6 +2159,9 @@ display: inline-block;
 
 
 @media (max-width: 991px) { 
+	.tablex-sale{
+		padding-left: 200px;
+	}
 	.hero-center-wrap h1{
 		font-size: 50px;
 	}
@@ -2227,6 +2292,9 @@ display: inline-block;
 }
 
 @media (max-width: 767px) {
+	.tablex-sale{
+		padding-left: 120px;
+	}
 	.hero-center-wrap h1{
 		font-size: 40px;
 	}
@@ -2298,6 +2366,9 @@ display: inline-block;
 		border-radius: 10px;
 	}
 	.table-sale{
+		padding: 20px;
+	}
+	.tablex-sale{
 		padding: 20px;
 	}
 	.title-wrap .back-title{

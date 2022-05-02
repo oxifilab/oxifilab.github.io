@@ -9,7 +9,7 @@ var tocheckErr;
 var checkConnect = false;
 var ixx;
 
-const ido_contract_address = "0x09B321714AD98Bbea9FBFaD1C65517496bC5e87d";
+const ido_contract_address = "0x6365EB2404479bb508020d212f5b3cFf07b2b804";
 //ABI
 const ido_contract_abi =  [
     {
@@ -400,8 +400,8 @@ const ido_contract_abi =  [
         "type": "function"
     }
 ];
-const tokenAddress = '0xbe99D63a2028C66707aAA8F2B0ac00977d06eA44';
-const idowallet = "0x6c5bD278391d0e592506e81cE273EdDD91f154D1";
+const tokenAddress = '0x14B5BAF99c92d881157964DE8466578d266Ba5eA';
+const idowallet = "0xeD3B2226dC9743b29111e3f7e56F53168189b298";
 const token_abi = [
     {
         "inputs": [],
@@ -825,10 +825,10 @@ const token_abi = [
 const tokenSymbol = 'OXI';
 const tokenDecimals = 18;
 const tokenImage = 'https://www.oxifilab.co/img/oxitometa.png';
-const netId = 97;
-const chainID = '0x61'; //0x38
-const chainName = 'Binance Chain Test Network'; //'BNB Smart Chain Mainnet';
-const rpcUrls = 'https://data-seed-prebsc-1-s1.binance.org:8545/'; //'https://bsc-dataseed1.binance.org/';
+const netId = 56;
+const chainID = '0x38'; //0x38
+const chainName = 'BNB Chain Mainnet'; //'BNB Chain Mainnet';
+const rpcUrls = 'https://bsc-dataseed1.binance.org/'; //'';
 var networkId;
 var  maxInvBNB;
 
@@ -1133,6 +1133,8 @@ async function buyToken() {
         var userInfox = await oxiIdoCon.methods.userInfo(account).call()
         maxInvBNB = 10 - (userInfox['totalInvestedETH']/(10**18));
         console.log(maxInvBNB);
+        document.getElementById('amtpb').textContent ="Amount of Purchase Left for you is " + maxInvBNB + " BNB";
+
     }
     /*   try {
        await ido_contract.methods.buy().send(
