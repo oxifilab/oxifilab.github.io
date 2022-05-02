@@ -9,9 +9,9 @@ var tocheckErr;
 var checkConnect = false;
 var ixx;
 
-const ido_contract_address = "0x05c665531eB10B5258c3646c211E55E875E3B74D";
+const ido_contract_address = "0xdaB4Ab11aC15f76B0962008A607fBC246f814f81";
 //ABI
-const ido_contract_abi = [
+const ido_contract_abi =  [
     {
         "inputs": [
             {
@@ -136,7 +136,7 @@ const ido_contract_abi = [
     },
     {
         "inputs": [],
-        "name": "buyOxi",
+        "name": "buy",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"
@@ -400,7 +400,7 @@ const ido_contract_abi = [
         "type": "function"
     }
 ];
-const tokenAddress = '0x56fa286da8584C0239952b49AE3195589D4E6cda';
+const tokenAddress = '0xbe99D63a2028C66707aAA8F2B0ac00977d06eA44';
 const token_abi = [
     {
         "inputs": [],
@@ -1030,7 +1030,7 @@ async function buyToken() {
     // console.log(nBNB.value)
     // console.log (amount);
     try {
-        await ido_contract.methods.buyOxi().call(
+        await ido_contract.methods.buy().call(
             {
                 from: account,
                 gas: 300000,
@@ -1038,7 +1038,7 @@ async function buyToken() {
             }
         )
         // Run this if there is no error
-        await ido_contract.methods.buyOxi().send(
+        await ido_contract.methods.buy().send(
             {
                 from: account,
                 gas: 300000,
@@ -1107,7 +1107,7 @@ async function buyToken() {
         document.getElementById('bal').textContent = bal;
     }
     /*   try {
-       await ido_contract.methods.buyOxi().send(
+       await ido_contract.methods.buy().send(
            {
                from: account,
                gas:  300000,
@@ -1341,9 +1341,8 @@ async function addtoMeta() {
     }
 
 }
-
+window.ethereum.on('accountsChanged', function (accounts) {
+    console.log('accountsChanges',accounts);
+    window.location.reload();
+  });
 window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
-
-
-
-

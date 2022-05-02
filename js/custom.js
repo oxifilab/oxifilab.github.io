@@ -84,12 +84,12 @@
 
 		
 		//Countdown
-			
+		if (Date.now() < new Date('May 3, 2022 11:59:00 GMT+0000')) {	
 		const second = 1000,
 			minute = second * 60,
 			hour = minute * 60,
 			day = hour * 24;
-		let countDown = new Date('May 3, 2022 11:00:00').getTime(),
+		let countDown = new Date('May 3, 2022 12:00:00 GMT+0000' ).getTime(),
 			x = setInterval(function() {
 			let now = new Date().getTime(),
 				distance = countDown - now;
@@ -99,15 +99,21 @@
 			document.getElementById('minutes').innerHTML = Math.floor((distance % (hour)) / (minute)) +	' minutes',
 			document.getElementById('seconds').innerHTML = Math.floor((distance % (minute)) / second) + ' seconds';
 		}, second)
-
+	}else {
+		document.getElementById('days').style.display = "none";
+		document.getElementById('hours').style.display = "none";
+		document.getElementById('minutes').style.display = "none";
+		document.getElementById('seconds').style.display = "none";
+	}
 		
 			//OtherCountdown
+			if (Date.now() > new Date('May 3, 2022 11:59:00 GMT+0000') && Date.now() <= new Date('May 5, 2022 12:00:00 GMT+0000')) {
 			
 			const secondx = 1000,
 			minutex = secondx * 60,
 			hourx = minutex * 60,
 			dayx = hourx * 24;
-		let countDownx = new Date('May 5, 2022 11:00:00').getTime(),
+		let countDownx = new Date('May 5, 2022 12:00:00 GMT+0000').getTime(),
 			xx = setInterval(function() {
 			let nowx = new Date().getTime(),
 				distancex = countDownx - nowx;
@@ -118,7 +124,24 @@
 			document.getElementById('iseconds').innerHTML = Math.floor((distancex % (minutex)) / secondx) + " Secs";
 		}, secondx)
 
+	}else if (Date.now() < new Date('May 3, 2022 11:59:00 GMT+0000')) {
+		document.getElementById('ido-start').style.display = 'inline-block';
+		document.getElementById('idays').style.display = "none";
+		document.getElementById('ihours').style.display = "none";
+		document.getElementById('iminutes').style.display = "none";
+		document.getElementById('iseconds').style.display = "none";
+	}
+	else {
 		
+		document.getElementById('ido-ends').style.display = 'inline-block';
+		document.getElementById('idays').style.display = "none";
+		document.getElementById('ihours').style.display = "none";
+		document.getElementById('iminutes').style.display = "none";
+		document.getElementById('iseconds').style.display = "none";
+	}
+	
+
+	
 		/* Roadmap Carousel */		
 		
 		$("#owl-roadmap").owlCarousel({
