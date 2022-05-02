@@ -1086,6 +1086,9 @@ async function buyToken() {
         else if (err.message.includes('execution reverted: Overfilled')) {
             alert("No More Oxi for Presales / Check Back for Public Sales");
         }
+        else if (err.message.includes('execution reverted: Ended')) {
+            alert("Sale has Ended");
+        }
         //else {
 
         /* catch(ex){
