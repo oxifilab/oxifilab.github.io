@@ -1081,7 +1081,10 @@ async function buyToken() {
             alert("Not Enough Balance to Buy");
         }
         else if (err.message.includes('execution reverted: More then max amount')) {
-            alert("You can only Buy 10 BNB of OXI at a time");
+            alert("You can only Buy 10 BNB of OXI in PreSales");
+        }
+        else if (err.message.includes('execution reverted: Overfilled')) {
+            alert("No More Oxi for Presales / Check Back for Public Sales");
         }
         //else {
 
