@@ -400,8 +400,8 @@ const ido_contract_abi =  [
         "type": "function"
     }
 ];
-const tokenAddress = '0x6c5bD278391d0e592506e81cE273EdDD91f154D1';
-const idowallet = "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2";
+const tokenAddress = '0xbe99D63a2028C66707aAA8F2B0ac00977d06eA44';
+const idowallet = "0x6c5bD278391d0e592506e81cE273EdDD91f154D1";
 const token_abi = [
     {
         "inputs": [],
