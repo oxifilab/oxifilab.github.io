@@ -103,15 +103,9 @@ mark{
 	z-index: 10;
 }
 .account_money {
-    width: max-content;
+    width: 100%;
 }
-@media only screen and (max-width: 767px) {
-    .account_money {
-        margin-right: 0px;
-		width: auto;
-		height: auto;
-    }
-}
+
 .account_money ul li {
     display: inline;
     justify-content: space-around;
@@ -135,12 +129,12 @@ mark{
     }
 }
 .account_money ul li.crypto span {
-    margin-right: 10px;
+    margin-right: 0px;
     font-weight: 500;
 }
 @media only screen and (max-width: 1199px) {
     .account_money ul li.crypto span {
-        margin-right: 10px;
+        margin-right: 0px;
     }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1350px) {
@@ -513,7 +507,9 @@ mark{
 	text-transform: uppercase;
 }
 .d-flex{
-	padding: 16px 0 !important;
+	padding-top: 16px ;
+	
+width: 100%;
 }
 .nav-link, 
 .nav-link:focus {

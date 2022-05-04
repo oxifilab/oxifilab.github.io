@@ -997,7 +997,8 @@ async function connectWallet() {
             var userInfox = await oxiIdoCon.methods.userInfo(account).call()
             maxInvBNB = 10 - (userInfox['totalInvestedETH']/(10**18));
             console.log(maxInvBNB);
-            var oxiBal = Number(await oxiCon.methods.balanceOf(account).call()) / (10 ** 18) + " OXI";
+            var oxiBal = Number((await oxiCon.methods.balanceOf(account).call()) / (10 ** 18)).toFixed(0) + " OXI";
+            console.log (oxiBal);
             var oxiav = await oxiIdoCon.methods.tokensForDistribution().call() / (10 ** 18) ;
            var oxileft = (2250000000 - oxiav) + " / 2250000000";
            console.log(oxileft);
@@ -1007,7 +1008,7 @@ async function connectWallet() {
            // document.getElementById('oxi-completed').textContent = oxitopercent.toFixed(2) + "% / 100%";
             document.getElementById('tokenbalance').textContent = oxiBal;
             idoBalance = await web3.eth.getBalance(idowallet)
-            var idoBal = Number(await web3.utils.fromWei(idoBalance, "ether")).toFixed(1) + " / 500 BNB"
+            var idoBal = Number(await web3.utils.fromWei(idoBalance, "ether")).toFixed(1) + " BNB / 500 BNB"
             document.getElementById('idobalance').textContent = idoBal;
             //document.getElementById('tokenForDist').textContent = oxileft;
             document.getElementById('amtpb').textContent ="Amount of Purchase Left for you is " + maxInvBNB + " BNB";
