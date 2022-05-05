@@ -1008,8 +1008,8 @@ async function connectWallet() {
            // document.getElementById('oxi-completed').textContent = oxitopercent.toFixed(2) + "% / 100%";
             document.getElementById('tokenbalance').textContent = oxiBal;
             idoBalance = await web3.eth.getBalance(idowallet)
-            var idoBal = Number(await web3.utils.fromWei(idoBalance, "ether")).toFixed(1) + " BNB / 500 BNB"
-            document.getElementById('idobalance').textContent = idoBal;
+            var idoBal = Number(await web3.utils.fromWei(idoBalance, "ether"))+50 ;
+            document.getElementById('idobalance').textContent = idoBal.toFixed(2) + " BNB/200 BNB";
             //document.getElementById('tokenForDist').textContent = oxileft;
             document.getElementById('amtpb').textContent ="Amount of Purchase Left for you is " + maxInvBNB + " BNB";
 
